@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "options.js",
+  "sourceRoot": "",
+  "sources": [
+    "options.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAAA;CAAA;CAAA"
+}

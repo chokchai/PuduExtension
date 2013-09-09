@@ -1,0 +1,46 @@
+{
+    "manifest_version": 2,
+
+    "name": "Pudu Extension",
+    "description": "Pudu Extension is extension that will make your lolthai forums look clean and clear!",
+    "version": "1.0",
+    "homepage_url": "https://github.com/chokchai/PuduExtension",
+
+    "permissions": [
+        "http://*.lolthai.com/"
+    ],
+
+    "content_scripts": [
+        {
+            "matches": ["http://*.lolthai.com/*"],
+            "css": [
+                "pudu.css"
+            ],
+            "js": [
+                "libs/jquery-2.0.3.min.js",
+                "pudu.js"
+            ]
+        }
+    ],
+
+    "icons" : {
+        "16": "imgs/pudu-icon-16.png",
+        "48": "imgs/pudu-icon-48.png",
+        "128": "imgs/pudu-icon-128.png"
+    },
+
+    "browser_action": {
+        "default_icon": {
+            "19": "imgs/pudu-icon-19.png",
+            "38": "imgs/pudu-icon-38.png"
+        },
+        "default_title": "Pudu Extension"
+        // "default_popup": "options.html"
+    },
+
+    "web_accessible_resources" : [
+        "libs/jquery-2.0.3.min.map",
+        "pudu.map",
+        "imgs/emo.png"
+    ]
+}
