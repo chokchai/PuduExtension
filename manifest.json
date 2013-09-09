@@ -2,7 +2,7 @@
     "manifest_version": 2,
 
     "name": "Pudu Extension",
-    "description": "Pudu Extension is extension that will make your lolthai forums look clean and clear!",
+    "description": "Pudu Extension is extension that will make your forums look clean and clear!",
     "version": "1.0",
     "homepage_url": "https://github.com/chokchai/PuduExtension",
 
@@ -35,7 +35,6 @@
             "38": "imgs/pudu-icon-38.png"
         },
         "default_title": "Pudu Extension"
-        // "default_popup": "options.html"
     },
 
     "web_accessible_resources" : [
