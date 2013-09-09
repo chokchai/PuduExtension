@@ -3,6 +3,7 @@ Pudu Extension (Chrome Extension)
 Pudu Extension is lightweight extension for make forums look clean, clear and fast!
 
 licence: MIT (means: you can do whatever, just give me a credits)
+
 contact: chokchai@devindy.com
 
 Features
