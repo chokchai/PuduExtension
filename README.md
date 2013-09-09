@@ -8,16 +8,15 @@ contact: chokchai@devindy.com
 Features
 ========
 
-* Quick comment with emotion in topic
-* Remove all signature in topic
+* Quick comment with emotion in topic and torrents
+* Remove all signature in topic (double press alt to display signature)
 * Redesign topic and forums pages
 * Highlight on liked comment
-* Change default font to Segoe UI
+* Change default font to `Segoe UI`
 * Limit pet image size
 * Limit image size in topic
 
 Todo
 ====
 
-* Bring back all signature by holding alt button
-
+* ???

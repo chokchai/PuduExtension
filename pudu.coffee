@@ -10,6 +10,7 @@ $commentsBox = $commentsTableInner.find('a[name] > table').parent()
 $commentsHeader = $ 'p.sub > table'
 $comemntsBody = $commentsBox.find '>table.main'
 $commentsContent = $ '.comment'
+$torrentCommentLink = $ 'a[href^="comment.php?action=add"]'
 
 # Add Class to Elemetns for edit style
 $commentsTable.addClass 'pudu-comments-table'
@@ -59,20 +60,20 @@ emoHtml = '<div class="pudu"><ul id="emo" class="thumbnails">
 <li class="thumbnail"><div style="background-position: -1392px 0px;"  data-text=":yes:"  href="javascript:void(0);"></div></li>
 </ul></div>'
 
-commentHtml = '<div>
+commentHtml = (action, hidden, textarea) -> '<div>
 <table width="750" border="0" cellspacing="0" cellpadding="10">
 <tbody>
 <tr>
   <td align="center" style="border:0;">
-    <form method="post" action="?action=post">
-    <input type="hidden" name="topicid" value="">
+    <form method="post" action="'+action+'">
+    <input type="hidden" name="'+hidden+'" value="">
     <table class="main" border="0" cellspacing="0" cellpadding="5">
       <tbody>
       <tr>
         <td align="left" style="padding: 0px; border-bottom: 0;">
           <div style="padding:15px 15px 0 15px;">
           <b>Comment</b>
-          <textarea id="pudu-comment-textarea" name="body" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>'+emoHtml+'
+          <textarea id="pudu-comment-textarea" name="'+textarea+'" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>'+emoHtml+'
           </div>
         </td>
       </tr>
@@ -93,45 +94,59 @@ commentHtml = '<div>
 </table>
 </div>'
 
-# added fast-comment
+# added fast-comment to topics
 if $addReplyButton.size() > 0
   $bottomPagination.after \
-    $(commentHtml)
+    $(commentHtml('?action=post', 'topicid', 'body'))
       .find('input[name="topicid"]')
       .val($('input[name="topicid"]').val())
       .end()
       .html()
 
-  $('#emo div').click (event)->
-    event.preventDefault();
-    event.stopImmediatePropagation();
-    event.stopPropagation();
-    insertAtCaret('pudu-comment-textarea', $(this).data('text'));
-    return false;
+# add fast comment to torrent page
+if $torrentCommentLink.size() > 0
+  $('.pudu-comments-table+p').after \
+    $(commentHtml('comment.php?action=add', 'tid', 'text'))
+      .find('input[name="tid"]')
+      .val($('input[name="torrentid"]').val())
+      .end()
+      .html()
 
-  insertAtCaret = (areaId,text)->
-    txtarea = document.getElementById(areaId);
-    scrollPos = txtarea.scrollTop;
-    strPos = 0;
+# bind emo
+$('body').on 'click', '#emo div', (event)->
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  event.stopPropagation();
+  insertAtCaret('pudu-comment-textarea', $(this).data('text'));
+  return false;
 
-    strPos = txtarea.selectionStart;
+insertAtCaret = (areaId,text)->
+  txtarea = document.getElementById(areaId);
+  scrollPos = txtarea.scrollTop;
+  strPos = 0;
 
-    front = (txtarea.value).substring(0,strPos);
-    back = (txtarea.value).substring(strPos,txtarea.value.length);
-    txtarea.value=front+text+back;
-    strPos = strPos + text.length;
+  strPos = txtarea.selectionStart;
 
-    txtarea.selectionStart = strPos;
-    txtarea.selectionEnd = strPos;
-    txtarea.focus();
-    txtarea.scrollTop = scrollPos;
+  front = (txtarea.value).substring(0,strPos);
+  back = (txtarea.value).substring(strPos,txtarea.value.length);
+  txtarea.value=front+text+back;
+  strPos = strPos + text.length;
+
+  txtarea.selectionStart = strPos;
+  txtarea.selectionEnd = strPos;
+  txtarea.focus();
+  txtarea.scrollTop = scrollPos;
 
 # remove signature
 if $commentsContent.size() > 0
   $commentsContent.each ()->
     html = $(this).html()
     cIndex = html.indexOf '<br>------------------------<br>'
-    if cIndex != -1 then $(this).html html.substring(0, cIndex)
+    if cIndex != -1 then $(this).html html.substring(0, cIndex)+'<div class="hide pudu-comment-signature" >'+html.substring(cIndex)+'</div>'
+
+  # show signature by double click alt
+  $('body').on 'keydown', (e)->
+    $('.pudu-comment-signature').toggleClass 'hide' if e.keyCode == 18
 
 # highlight on more like commend
 if $commentsBox.size() > 0
@@ -154,3 +169,5 @@ if $commentsBox.size() > 0
     else focus = 5
 
     $commentsBox.filter("[name='#{like.name}']").addClass "focus-#{focus}"
+
+# fix comment id (#)

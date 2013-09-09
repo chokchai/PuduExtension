@@ -3,7 +3,7 @@
 
     "name": "Pudu Extension",
     "description": "Pudu Extension is extension that will make your forums look clean and clear!",
-    "version": "1.0",
+    "version": "1.0.2",
 
     "permissions": [
         "http://*.lolthai.com/"
@@ -39,6 +39,7 @@
     "web_accessible_resources" : [
         "libs/jquery-2.0.3.min.map",
         "pudu.map",
+        "pudu.coffee",
         "imgs/emo.png"
     ]
 }
