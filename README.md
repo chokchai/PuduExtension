@@ -3,7 +3,7 @@ Pudu Extension (Chrome Extension)
 Pudu Extension is lightweight extension for make site look clean, clear and fast!
 
 * Licence: MIT
-* Developer: Chokchai Puttan (Chokchai[at]DevIndy.com)
+* Developer: Chokchai Puttan (Chokchai@DevIndy.com)
 
 Features
 ========
