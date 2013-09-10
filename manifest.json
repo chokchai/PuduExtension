@@ -2,7 +2,7 @@
     "manifest_version": 2,
 
     "name": "Pudu Extension",
-    "description": "Pudu Extension is extension that will make your forums look clean and clear!",
+    "description": "Pudu Extension is extension that will make your site look clean and clear!",
     "version": "1.0.3",
 
     "permissions": [
