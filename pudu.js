@@ -214,7 +214,7 @@
       }
     });
     $('body').on('keydown', function(e) {
-      if (e.keyCode === 18) {
+      if (e.ctrlKey && e.altKey) {
         return $('.pudu-comment-signature').toggleClass('hide');
       }
     });

@@ -9,7 +9,7 @@ Features
 --------
 
 - Quick comment with emotion in topic and details
-- Remove all signature in topic (double press alt to temporary display signature)
+- Remove all signature in topic (press alt+ctrl to temporary display signature)
 - Clean topic, forums and browse page
 - Highlight the liked comment (dark theme not supported yet)
 - Change default font to `Segoe UI`

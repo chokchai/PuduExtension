@@ -230,9 +230,10 @@ if page.viewtopic
     if cIndex != -1 then $(this).html html.substring(0,
       cIndex) + '<div class="hide pudu-comment-signature" >' + html.substring(cIndex) + '</div>'
 
-  # show signature by double click alt
+  # show signature by press ctrl+alt
   $('body').on 'keydown', (e)->
-    $('.pudu-comment-signature').toggleClass 'hide' if e.keyCode == 18
+    if e.ctrlKey and e.altKey
+        $('.pudu-comment-signature').toggleClass 'hide'
 
   # highlight on more like commend
   $commentsBox.each ()->
