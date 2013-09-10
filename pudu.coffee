@@ -1,173 +1,344 @@
+# load pudu utils
+pudu = window.pudu
+
+#######################################
+# indentify page
+#######################################
+
+url = window.location.href
+page =
+  # forums and market use same operation
+  viewtopic: url.indexOf('/forums.php?action=viewtopic') isnt -1 \
+              or url.indexOf('/markets.php?action=viewtopic') isnt -1
+  viewforum: url.indexOf('/forums.php?action=viewforum') isnt -1 \
+              or url.indexOf('/markets.php?action=viewforum') isnt -1 \
+              or url.indexOf('/markets.php?action=viewall') isnt -1 # market have view all feature...
+  forums: (url.indexOf('/forums.php') isnt -1 or url.indexOf('/markets.php') isnt -1) \
+              and url.indexOf('?action=') is -1 # and no action
+  browse: url.indexOf('/browse.php') isnt -1
+  details: url.indexOf('/details.php') isnt -1
+
+#######################################
 # jQuery Elements
-$menu = $('.outer:first')
-$content = $('.outer:last')
-$addReplyButton = $ 'input[value="Add Reply"]'
-$topPagination = $('p font.gray:first').parent()
-$bottomPagination = $('p font.gray:last').parent()
-$commentsTable = $ 'table.main[width="750"]'
-$commentsTableInner = $commentsTable.find 'table:first'
-$commentsBox = $commentsTableInner.find('a[name] > table').parent()
-$commentsHeader = $ 'p.sub > table'
-$comemntsBody = $commentsBox.find '>table.main'
-$commentsContent = $ '.comment'
-$torrentCommentLink = $ 'a[href^="comment.php?action=add"]'
+#######################################
 
-# Add Class to Elemetns for edit style
-$commentsTable.addClass 'pudu-comments-table'
-$commentsTableInner.addClass 'pudu-comments-table-inner'
-$topPagination.addClass 'pudu-top-pagination'
-$bottomPagination.addClass 'pudu-bottom-pagination'
-$commentsBox.addClass 'pudu-comments-box'
-$commentsHeader.addClass 'pudu-comments-header'
-$commentsContent.addClass 'pudu-comments-content'
-$comemntsBody.addClass 'pudu-comments-body'
+# global
+$menu = $ '.outer:first'
+$content = $ '.outer:last'
+$header = $ 'h1:first'
 
+if page.viewtopic or page.viewforum
+  $topPagination = $ 'h1+p:first'
+  $bottomPagination = $ 'table+p:first'
+
+if page.viewtopic or page.details
+  $commentsTable = $ 'table.main[width="750"]'
+  $commentsContent = $ '.comment'
+  $commentsTableInner = $commentsTable.find 'table:first'
+  $commentsBox = $commentsTableInner.find('a[name] > table').parent()
+  $commentsHeader = $commentsTableInner.find 'p.sub > table'
+  $commentsBody = $commentsBox.find '>table.main'
+  $commentsUser = $commentsHeader.find 'a[href^="userdetails.php"]'
+  $commentsPmLink = $commentsHeader.find 'a[href^="sendmessage.php"]'
+  $commentsQuoteLink = $commentsHeader.find 'a[href^="?action=quotepost"]'
+  $commentsLikeLink = $commentsHeader.find 'a[href^="forums.php?action=likes"]'
+  $commentsEditLink = $commentsHeader.find 'a[href^="forums.php?action=editpost"]'
+  $torrentCommentLink = $ 'a[href^="comment.php?action=add"]'
+
+if page.viewtopic
+  $addReplyButton = $ 'input[value="Add Reply"]'
+
+if page.forums
+  $forumsTable = $ 'h1+p+table, h1+table'
+  $forumsTableRow = $forumsTable.find('tbody > tr')
+  $forumsTableHeader = $forumsTable.find('tbody > tr:eq(0)')
+  $forumsTableRowForum = $forumsTableRow.find('> td:eq(0)')
+  $forumsTableRowTopics = $forumsTableRow.find('> td:eq(1)')
+  $forumsTableRowPosts = $forumsTableRow.find('> td:eq(2)')
+  $forumsTableRowLastTopic = $forumsTableRow.find('> td:eq(3)')
+
+if page.details
+  $topPagination = $ 'p[align="center"]:eq(1)'
+  $bottomPagination = $ 'p[align="center"]:eq(2)'
+  $topAddComment = $ 'p[align="center"]:eq(0) > a'
+  $bottomAddComment = $ 'p[align="center"]:eq(3) > a'
+  $commentsHeader = $ 'p.sub'
+  $commentsBody = $ 'p.sub+table'
+  $commentsContent = $commentsBody.find 'td.text'
+  $commentsUser = $commentsHeader.find 'a[href^="userdetails.php"]'
+
+if page.viewforum
+  $topicTable = $topPagination.next()
+  $topicTableRow = $topicTable.find('tbody > tr')
+  $topicTableHeader = $topicTable.find('tbody > tr:eq(0)')
+  $topicTableRowTopic = $topicTableRow.find('> td:eq(0)')
+  $topicTableRowReplies = $topicTableRow.find('> td:eq(1)')
+  $topicTableRowViews = $topicTableRow.find('> td:eq(2)')
+  $topicTableRowAuthor = $topicTableRow.find('> td:eq(3)')
+  $topicTableRowLastPost = $topicTableRow.find('> td:eq(4)')
+
+if page.browse
+  $topPagination = $ 'p[align="center"]:eq(1)'
+  $bottomPagination = $ 'p[align="center"]:eq(2)'
+  $browseTable = $topPagination.next()
+  $browseTableRow = $browseTable.find 'tbody > tr'
+  $browseTableHeader = $browseTable.find 'tbody > tr:eq(0)'
+  $browseTableType = $browseTableRow.find '> td:eq(0)'
+  $browseTableName = $browseTableRow.find '> td:eq(1)'
+  $browseTableFiles = $browseTableRow.find '> td:eq(2)'
+  $browseTableComm = $browseTableRow.find '> td:eq(3)'
+  $browseTableAdded = $browseTableRow.find '> td:eq(4)'
+  $browseTableSize = $browseTableRow.find '> td:eq(5)'
+  $browseTableSnatched = $browseTableRow.find '> td:eq(6)'
+  $browseTablePeers = $browseTableRow.find '> td:eq(7)'
+  $browseTableSeeders = $browseTableRow.find '> td:eq(8)'
+  $browseTableLeechers = $browseTableRow.find '> td:eq(9)'
+  $browseTableUppedby = $browseTableRow.find '> td:eq(10)'
+
+#######################################
+# Add Class to Elemetns
+#######################################
+
+# add class pudu-page-{pagename} to body tag
+$('body').addClass "pudu-page-#{p}" for p, v of page when v is true
+
+$menu.addClass 'pudu-menu'
+$content.addClass 'pudu-content'
+
+if page.viewtopic or page.details or page.browse
+  $topPagination.addClass 'pudu-top-pagination'
+  $bottomPagination.addClass 'pudu-bottom-pagination'
+
+if page.viewtopic or page.details
+  $commentsTable.addClass 'pudu-comments-table'
+  $commentsTableInner.addClass 'pudu-comments-table-inner'
+  $commentsBox.addClass 'pudu-comments-box'
+  $commentsHeader.addClass 'pudu-comments-header'
+  $commentsContent.addClass 'pudu-comments-content'
+  $commentsBody.addClass 'pudu-comments-body'
+  $commentsUser.addClass 'pudu-comments-user'
+  $commentsPmLink.addClass 'pudu-comments-pm-link'
+  $commentsQuoteLink.addClass 'pudu-comments-quote-link'
+  $commentsLikeLink.addClass 'pudu-comments-like-link'
+  $commentsEditLink.addClass 'pudu-comments-edit-link'
+
+if page.forums
+  $forumsTable.addClass 'pudu-forums-table'
+  $forumsTableRow.addClass 'pudu-forums-table-row'
+  $forumsTableHeader.removeClass('pudu-forums-table-row').addClass 'pudu-forums-table-header'
+  $forumsTableRowForum.addClass 'pudu-forums-table-row-forum'
+  $forumsTableRowTopics.addClass 'pudu-forums-table-row-topic'
+  $forumsTableRowPosts.addClass 'pudu-forums-table-row-posts'
+  $forumsTableRowLastTopic.addClass 'pudu-forums-table-row-lasttopic'
+
+if page.details
+  $topAddComment.addClass 'pudu-top-add-comment'
+  $bottomAddComment.addClass 'pudu-bottom-add-comment'
+
+if page.viewforum
+  $topicTable.addClass 'pudu-topic-table'
+  $topicTableRow.addClass 'pudu-topic-table-row'
+  $topicTableHeader.removeClass('pudu-topic-table-row').addClass 'pudu-topic-table-header'
+  $topicTableRowTopic.addClass 'pudu-topic-table-row-topic'
+  $topicTableRowReplies.addClass 'pudu-topic-table-row-repiles'
+  $topicTableRowViews.addClass 'pudu-topic-table-row-views'
+  $topicTableRowAuthor.addClass 'pudu-topic-table-row-author'
+  $topicTableRowLastPost.addClass 'pudu-topic-table-row-lastpost'
+
+if page.browse
+  $browseTable.addClass 'pudu-browse-table'
+  $browseTableRow.addClass 'pudu-browse-table-row'
+  $browseTableHeader.removeClass('pudu-browse-table-row').addClass 'pudu-browse-table-header'
+  $browseTableType.addClass 'pudu-browse-table-row-type'
+  $browseTableName.addClass 'pudu-browse-table-row-name'
+  $browseTableFiles.addClass 'pudu-browse-table-row-file'
+  $browseTableComm.addClass 'pudu-browse-table-row-comm'
+  $browseTableAdded.addClass 'pudu-browse-table-row-added'
+  $browseTableSize.addClass 'pudu-browse-table-row-size'
+  $browseTableSnatched.addClass 'pudu-browse-table-row-snatched'
+  $browseTablePeers.addClass 'pudu-browse-table-row-peers'
+  $browseTableSeeders.addClass 'pudu-browse-table-row-seeders'
+  $browseTableLeechers.addClass 'pudu-browse-table-row-leechers'
+  $browseTableUppedby.addClass 'pudu-browse-table-row-uppedby'
+
+#######################################
 # Fixed Elements
-$('a[href="#top"]').hide()
-$commentsBox.css 'backgroundColor', $commentsHeader.css 'backgroundColor'
+#######################################
 
-# Default Html
-emoHtml = '<div class="pudu"><ul id="emo" class="thumbnails">
-<li class="thumbnail"><div style="background-position: 0px 0px;"  data-text=":baby:" href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -48px 0px;"  data-text=":blink:" href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -96px 0px;"  data-text=":bow:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -144px 0px;"  data-text=":closedeyes:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -192px 0px;"  data-text=":cool:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -240px 0px;" data-text="'+":'-("+' href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -288px 0px;"  data-text=":-D"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -336px 0px;"  data-text=":hmm:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -384px 0px;"  data-text=":hmmm:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -432px 0px;"  data-text=":huh:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -480px 0px;"  data-text=":lol:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -528px 0px;"  data-text=":ninja:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -576px 0px;"  data-text=":-|"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -624px 0px;"  data-text=":punk:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -672px 0px;"  data-text=":rolleyes:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -720px 0px;"  data-text=":-("  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -768px 0px;"  data-text=":shifty:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -816px 0px;"  data-text=":slap:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -864px 0px;"  data-text=":-)"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -912px 0px;"  data-text=":tease:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -960px 0px;"  data-text=":thumbsdown:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1008px 0px;"  data-text=":thumbsup:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1056px 0px;"  data-text=":-P"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1104px 0px;"  data-text=":wall:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1152px 0px;"  data-text=":wave:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1200px 0px;"  data-text=":wavecry:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1248px 0px;"  data-text=":weep:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1296px 0px;"  data-text=":whistle:"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1344px 0px;"  data-text=";-)"  href="javascript:void(0);"></div></li>
-<li class="thumbnail"><div style="background-position: -1392px 0px;"  data-text=":yes:"  href="javascript:void(0);"></div></li>
-</ul></div>'
+if page.viewtopic
+  # remove top button
+  $('a[href="#top"]').hide()
+  # change comment box color
+  $commentsBox.css 'backgroundColor', $commentsHeader.css 'backgroundColor'
 
-commentHtml = (action, hidden, textarea) -> '<div>
-<table width="750" border="0" cellspacing="0" cellpadding="10">
-<tbody>
-<tr>
-  <td align="center" style="border:0;">
-    <form method="post" action="'+action+'">
-    <input type="hidden" name="'+hidden+'" value="">
-    <table class="main" border="0" cellspacing="0" cellpadding="5">
-      <tbody>
-      <tr>
-        <td align="left" style="padding: 0px; border-bottom: 0;">
-          <div style="padding:15px 15px 0 15px;">
-          <b>Comment</b>
-          <textarea id="pudu-comment-textarea" name="'+textarea+'" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>'+emoHtml+'
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td align="center" style="border-top:0;">
-          <div style="padding-bottom: 15px;">
-          <input type="submit" class="btn" value="Submit">
-          </div>
-        </td>
-      </tr>
-      </tbody>
-      </table>
-    </form>
-    <p align="center"><a href="tags.php" target="_blank">Tags<img src="pic/new.gif"></a> | <a href="smilies.php" target="_blank">Smilies</a></p>
-  </td>
-</tr>
-</tbody>
-</table>
-</div>'
+if page.details
+  # goto quick comment when click add comment
+  $topAddComment.attr 'href', '#pudu-quick-comment'
 
-# added fast-comment to topics
-if $addReplyButton.size() > 0
-  $bottomPagination.after \
-    $(commentHtml('?action=post', 'topicid', 'body'))
+if page.viewforum
+  # change table display
+  $('.pudu-topic-table-row > td, .pudu-topic-table-header > td')
+    .css 'borderColor', $('.pudu-topic-table-header > td:first').css 'backgroundColor'
+
+if page.browse
+  # change table display
+  $('.pudu-browse-table-row > td, .pudu-browse-table-header > td')
+  .css 'borderColor', $('.pudu-browse-table-header > td:first').css 'backgroundColor'
+  # set table header link font-color
+  $browseTableHeader.find('a').css 'color', $browseTableHeader.find('td').css 'color'
+  # remove churry image
+  $browseTableRow.find('img[src="pic/xr.gif"], img[src="pic/xl.gif"]').hide()
+
+if page.forums
+  # change table display
+  $('.pudu-forums-table-row > td, .pudu-forums-table-header > td')
+  .css 'borderColor', $('.pudu-forums-table-header > td:first').css 'backgroundColor'
+
+#######################################
+# operations
+#######################################
+
+if page.forums
+
+  # set title
+  $('title').text $header.text()
+
+if page.viewforum
+
+  # set title
+  $('title').text $header.text()
+
+if page.viewtopic
+
+  # set title
+  title = $header.text()
+  $('title').text title.substring(title.indexOf('> ')+2)
+
+  # added fast-comment to topics
+  if $addReplyButton.size() > 0
+    $bottomPagination.after \
+      $(pudu.commentHtml('?action=post', 'topicid', 'body'))
       .find('input[name="topicid"]')
       .val($('input[name="topicid"]').val())
       .end()
       .html()
 
-# add fast comment to torrent page
-if $torrentCommentLink.size() > 0
-  $('.pudu-comments-table+p').after \
-    $(commentHtml('comment.php?action=add', 'tid', 'text'))
-      .find('input[name="tid"]')
-      .val($('input[name="torrentid"]').val())
-      .end()
-      .html()
-
-# bind emo
-$('body').on 'click', '#emo div', (event)->
-  event.preventDefault();
-  event.stopImmediatePropagation();
-  event.stopPropagation();
-  insertAtCaret('pudu-comment-textarea', $(this).data('text'));
-  return false;
-
-insertAtCaret = (areaId,text)->
-  txtarea = document.getElementById(areaId);
-  scrollPos = txtarea.scrollTop;
-  strPos = 0;
-
-  strPos = txtarea.selectionStart;
-
-  front = (txtarea.value).substring(0,strPos);
-  back = (txtarea.value).substring(strPos,txtarea.value.length);
-  txtarea.value=front+text+back;
-  strPos = strPos + text.length;
-
-  txtarea.selectionStart = strPos;
-  txtarea.selectionEnd = strPos;
-  txtarea.focus();
-  txtarea.scrollTop = scrollPos;
-
-# remove signature
-if $commentsContent.size() > 0
+  # remove signature
   $commentsContent.each ()->
     html = $(this).html()
     cIndex = html.indexOf '<br>------------------------<br>'
-    if cIndex != -1 then $(this).html html.substring(0, cIndex)+'<div class="hide pudu-comment-signature" >'+html.substring(cIndex)+'</div>'
+    if cIndex != -1 then $(this).html html.substring(0,
+      cIndex) + '<div class="hide pudu-comment-signature" >' + html.substring(cIndex) + '</div>'
 
   # show signature by double click alt
   $('body').on 'keydown', (e)->
     $('.pudu-comment-signature').toggleClass 'hide' if e.keyCode == 18
 
-# highlight on more like commend
-if $commentsBox.size() > 0
-  likes = []
+  # highlight on more like commend
   $commentsBox.each ()->
     # collect like score
     score = $(this).find('td.embedded[width="99%"] b:last').text()
-    if score > 0 then likes.push(score: score, name: $(this).attr 'name')
-
-  # add focus to comment
-  for like in likes
-    if 10 >= like.score > 0
+    name = $(this).attr 'name'
+    if 10 >= score > 0
       focus = 1
-    else if 20 >= like.score > 10
+    else if 20 >= score > 10
       focus = 2
-    else if 30 >= like.score > 20
+    else if 30 >= score > 20
       focus = 3
-    else if 40 >= like.score > 30
+    else if 40 >= score > 30
       focus = 4
-    else focus = 5
+    else if score > 40
+      focus = 5
+    $commentsBox.filter("[name='#{name}']").addClass "focus-#{focus}"
 
-    $commentsBox.filter("[name='#{like.name}']").addClass "focus-#{focus}"
+  # edit comment header
+  $commentsBox.each ()->
+    # reformat
+    name = $(this).attr 'name'
+    name = $(this).prev().attr 'name' if name == 'last'
+    $header = $(this).find '.pudu-comments-header'
+    html = $header.html()
+    .replace(' GMT', '')
+    .replace("##{name}", '')
+    .replace(///\[///g, '')
+    .replace(///\]///g, '')
+    .replace('--', '-')
 
-# fix comment id (#)
+    # remove b-tag on all link except username
+    $html = $(html).find('a:not(.pudu-comments-user, .pudu-comments-like-link)').each(()-> $(@).text $(@).text()).end()
+
+    $header.html($html)
+
+if page.details
+
+  # set title
+  $('title').text $header.text()
+
+  # add fast comment to torrent page
+  html = $(pudu.commentHtml('comment.php?action=add', 'tid', 'text'))
+          .find('input[name="tid"]')
+          .val(pudu.parseUrlQuery().id)
+          .end()
+          .html() + '<br/>'
+  if $bottomAddComment.size() > 0
+    $bottomAddComment.before html
+  else
+    $topAddComment.before html
+
+  # edit comment header
+  $commentsHeader.each ()->
+    name = $(this).find('.pudu-comments-user').attr('name').replace('comm', '')
+    html = $(this).html()
+    .replace(' GMT', '')
+    .replace("##{name}", '')
+    .replace(///\[///g, '')
+    .replace(///\]///g, '')
+    .replace('--', '-')
+    $(this).html html
+
+if page.details or page.viewtopic
+  # bind emo
+  $('body').on 'click', '#emo div', (event)->
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    event.stopPropagation();
+    pudu.insertAtCaret('pudu-comment-textarea', $(this).data('text'));
+    return false;
+
+if page.browse
+  # add download torrent link
+  $browseTableName.each ()->
+    # add url to link as data
+    link = $(this).find('a:first')
+    if link.size() > 0
+      $td = $(this).siblings('.pudu-browse-table-row-peers').html("<a class='pudu-direct-download' data-url='#{link.attr('href')}' href='javascript:void(0);'>torrent</a>")
+    else
+      $td = $(this).siblings('.pudu-browse-table-row-peers').text('Download')
+
+    $(this).after($td)
+
+  # onclick download torrent link
+  $('.pudu-direct-download').on 'click', ()->
+
+    # lock on disable
+    if ! $(@).is '.disable'
+
+      # show loading
+      $(@).text 'loading'
+      # disable all
+      $('.pudu-direct-download').addClass('disable')
+
+      url = $(@).data 'url'
+      $.get(url).done((res)=>
+        # load
+        window.location.href = $(res).find('a[href^="download.php"]').attr('href')
+        # show message
+        $(@).text 'torrent'
+        # enable all
+        $('.pudu-direct-download').removeClass('disable')
+      ).fail(()=>
+        # show message
+        $(@).text 'try again'
+        # enable all
+        $('.pudu-direct-download').removeClass('disable')
+      )

@@ -1,20 +1,20 @@
 Pudu Extension (Chrome Extension)
 =================================
-Pudu Extension is lightweight extension for make forums look clean, clear and fast!
+Pudu Extension is lightweight extension for make site look clean, clear and fast!
 
-* Licence: MIT (means: you can do whatever, just give me a credits)
-* Contact: chokchai@devindy.com
+* Licence: MIT
+* Developer: Chokchai Puttan (Chokchai[at]DevIndy.com)
 
 Features
 ========
 
-* Quick comment with emotion in topic and torrents
-* Remove all signature in topic (double press alt to display signature)
-* Redesign topic and forums pages
-* Highlight on liked comment
+* Quick comment with emotion in topic and details
+* Remove all signature in topic (double press alt to temporary display signature)
+* Cleaner topic, forums and browse
+* Highlight on liked comment (dark theme un supported)
 * Change default font to `Segoe UI`
-* Limit pet image size
-* Limit image size in topic
+* Change title to related content
+* Direct download torrent on browse page
 
 Todo
 ====
