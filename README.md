@@ -10,11 +10,11 @@ Features
 
 * Quick comment with emotion in topic and details
 * Remove all signature in topic (double press alt to temporary display signature)
-* Cleaner topic, forums and browse
-* Highlight on liked comment (dark theme un supported)
+* Clean topic, forums and browse page
+* Highlight the liked comment (dark theme not supported yet)
 * Change default font to `Segoe UI`
-* Change title to related content
-* Direct download torrent on browse page
+* Change page title to related content
+* Direct download on browse page
 
 Todo
 ====
