@@ -17,8 +17,6 @@
 
   /* Allow for input prepend/append in search forms */
 
-  /* White icons with optional class, or on hover/focus/active states of certain elements */
-
 }
 .pudu .clearfix {
   *zoom: 1;
@@ -1954,461 +1952,6 @@
 .pudu .table-hover tbody tr.info:hover > td {
   background-color: #c4e3f3;
 }
-.pudu [class^="icon-"],
-.pudu [class*=" icon-"] {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  *margin-right: .3em;
-  line-height: 14px;
-  vertical-align: text-top;
-  background-image: url("../img/glyphicons-halflings.png");
-  background-position: 14px 14px;
-  background-repeat: no-repeat;
-  margin-top: 1px;
-}
-.pudu .icon-white,
-.pudu .nav-pills > .active > a > [class^="icon-"],
-.pudu .nav-pills > .active > a > [class*=" icon-"],
-.pudu .nav-list > .active > a > [class^="icon-"],
-.pudu .nav-list > .active > a > [class*=" icon-"],
-.pudu .navbar-inverse .nav > .active > a > [class^="icon-"],
-.pudu .navbar-inverse .nav > .active > a > [class*=" icon-"],
-.pudu .dropdown-menu > li > a:hover > [class^="icon-"],
-.pudu .dropdown-menu > li > a:focus > [class^="icon-"],
-.pudu .dropdown-menu > li > a:hover > [class*=" icon-"],
-.pudu .dropdown-menu > li > a:focus > [class*=" icon-"],
-.pudu .dropdown-menu > .active > a > [class^="icon-"],
-.pudu .dropdown-menu > .active > a > [class*=" icon-"],
-.pudu .dropdown-submenu:hover > a > [class^="icon-"],
-.pudu .dropdown-submenu:focus > a > [class^="icon-"],
-.pudu .dropdown-submenu:hover > a > [class*=" icon-"],
-.pudu .dropdown-submenu:focus > a > [class*=" icon-"] {
-  background-image: url("../img/glyphicons-halflings-white.png");
-}
-.pudu .icon-glass {
-  background-position: 0      0;
-}
-.pudu .icon-music {
-  background-position: -24px 0;
-}
-.pudu .icon-search {
-  background-position: -48px 0;
-}
-.pudu .icon-envelope {
-  background-position: -72px 0;
-}
-.pudu .icon-heart {
-  background-position: -96px 0;
-}
-.pudu .icon-star {
-  background-position: -120px 0;
-}
-.pudu .icon-star-empty {
-  background-position: -144px 0;
-}
-.pudu .icon-user {
-  background-position: -168px 0;
-}
-.pudu .icon-film {
-  background-position: -192px 0;
-}
-.pudu .icon-th-large {
-  background-position: -216px 0;
-}
-.pudu .icon-th {
-  background-position: -240px 0;
-}
-.pudu .icon-th-list {
-  background-position: -264px 0;
-}
-.pudu .icon-ok {
-  background-position: -288px 0;
-}
-.pudu .icon-remove {
-  background-position: -312px 0;
-}
-.pudu .icon-zoom-in {
-  background-position: -336px 0;
-}
-.pudu .icon-zoom-out {
-  background-position: -360px 0;
-}
-.pudu .icon-off {
-  background-position: -384px 0;
-}
-.pudu .icon-signal {
-  background-position: -408px 0;
-}
-.pudu .icon-cog {
-  background-position: -432px 0;
-}
-.pudu .icon-trash {
-  background-position: -456px 0;
-}
-.pudu .icon-home {
-  background-position: 0 -24px;
-}
-.pudu .icon-file {
-  background-position: -24px -24px;
-}
-.pudu .icon-time {
-  background-position: -48px -24px;
-}
-.pudu .icon-road {
-  background-position: -72px -24px;
-}
-.pudu .icon-download-alt {
-  background-position: -96px -24px;
-}
-.pudu .icon-download {
-  background-position: -120px -24px;
-}
-.pudu .icon-upload {
-  background-position: -144px -24px;
-}
-.pudu .icon-inbox {
-  background-position: -168px -24px;
-}
-.pudu .icon-play-circle {
-  background-position: -192px -24px;
-}
-.pudu .icon-repeat {
-  background-position: -216px -24px;
-}
-.pudu .icon-refresh {
-  background-position: -240px -24px;
-}
-.pudu .icon-list-alt {
-  background-position: -264px -24px;
-}
-.pudu .icon-lock {
-  background-position: -287px -24px;
-}
-.pudu .icon-flag {
-  background-position: -312px -24px;
-}
-.pudu .icon-headphones {
-  background-position: -336px -24px;
-}
-.pudu .icon-volume-off {
-  background-position: -360px -24px;
-}
-.pudu .icon-volume-down {
-  background-position: -384px -24px;
-}
-.pudu .icon-volume-up {
-  background-position: -408px -24px;
-}
-.pudu .icon-qrcode {
-  background-position: -432px -24px;
-}
-.pudu .icon-barcode {
-  background-position: -456px -24px;
-}
-.pudu .icon-tag {
-  background-position: 0 -48px;
-}
-.pudu .icon-tags {
-  background-position: -25px -48px;
-}
-.pudu .icon-book {
-  background-position: -48px -48px;
-}
-.pudu .icon-bookmark {
-  background-position: -72px -48px;
-}
-.pudu .icon-print {
-  background-position: -96px -48px;
-}
-.pudu .icon-camera {
-  background-position: -120px -48px;
-}
-.pudu .icon-font {
-  background-position: -144px -48px;
-}
-.pudu .icon-bold {
-  background-position: -167px -48px;
-}
-.pudu .icon-italic {
-  background-position: -192px -48px;
-}
-.pudu .icon-text-height {
-  background-position: -216px -48px;
-}
-.pudu .icon-text-width {
-  background-position: -240px -48px;
-}
-.pudu .icon-align-left {
-  background-position: -264px -48px;
-}
-.pudu .icon-align-center {
-  background-position: -288px -48px;
-}
-.pudu .icon-align-right {
-  background-position: -312px -48px;
-}
-.pudu .icon-align-justify {
-  background-position: -336px -48px;
-}
-.pudu .icon-list {
-  background-position: -360px -48px;
-}
-.pudu .icon-indent-left {
-  background-position: -384px -48px;
-}
-.pudu .icon-indent-right {
-  background-position: -408px -48px;
-}
-.pudu .icon-facetime-video {
-  background-position: -432px -48px;
-}
-.pudu .icon-picture {
-  background-position: -456px -48px;
-}
-.pudu .icon-pencil {
-  background-position: 0 -72px;
-}
-.pudu .icon-map-marker {
-  background-position: -24px -72px;
-}
-.pudu .icon-adjust {
-  background-position: -48px -72px;
-}
-.pudu .icon-tint {
-  background-position: -72px -72px;
-}
-.pudu .icon-edit {
-  background-position: -96px -72px;
-}
-.pudu .icon-share {
-  background-position: -120px -72px;
-}
-.pudu .icon-check {
-  background-position: -144px -72px;
-}
-.pudu .icon-move {
-  background-position: -168px -72px;
-}
-.pudu .icon-step-backward {
-  background-position: -192px -72px;
-}
-.pudu .icon-fast-backward {
-  background-position: -216px -72px;
-}
-.pudu .icon-backward {
-  background-position: -240px -72px;
-}
-.pudu .icon-play {
-  background-position: -264px -72px;
-}
-.pudu .icon-pause {
-  background-position: -288px -72px;
-}
-.pudu .icon-stop {
-  background-position: -312px -72px;
-}
-.pudu .icon-forward {
-  background-position: -336px -72px;
-}
-.pudu .icon-fast-forward {
-  background-position: -360px -72px;
-}
-.pudu .icon-step-forward {
-  background-position: -384px -72px;
-}
-.pudu .icon-eject {
-  background-position: -408px -72px;
-}
-.pudu .icon-chevron-left {
-  background-position: -432px -72px;
-}
-.pudu .icon-chevron-right {
-  background-position: -456px -72px;
-}
-.pudu .icon-plus-sign {
-  background-position: 0 -96px;
-}
-.pudu .icon-minus-sign {
-  background-position: -24px -96px;
-}
-.pudu .icon-remove-sign {
-  background-position: -48px -96px;
-}
-.pudu .icon-ok-sign {
-  background-position: -72px -96px;
-}
-.pudu .icon-question-sign {
-  background-position: -96px -96px;
-}
-.pudu .icon-info-sign {
-  background-position: -120px -96px;
-}
-.pudu .icon-screenshot {
-  background-position: -144px -96px;
-}
-.pudu .icon-remove-circle {
-  background-position: -168px -96px;
-}
-.pudu .icon-ok-circle {
-  background-position: -192px -96px;
-}
-.pudu .icon-ban-circle {
-  background-position: -216px -96px;
-}
-.pudu .icon-arrow-left {
-  background-position: -240px -96px;
-}
-.pudu .icon-arrow-right {
-  background-position: -264px -96px;
-}
-.pudu .icon-arrow-up {
-  background-position: -289px -96px;
-}
-.pudu .icon-arrow-down {
-  background-position: -312px -96px;
-}
-.pudu .icon-share-alt {
-  background-position: -336px -96px;
-}
-.pudu .icon-resize-full {
-  background-position: -360px -96px;
-}
-.pudu .icon-resize-small {
-  background-position: -384px -96px;
-}
-.pudu .icon-plus {
-  background-position: -408px -96px;
-}
-.pudu .icon-minus {
-  background-position: -433px -96px;
-}
-.pudu .icon-asterisk {
-  background-position: -456px -96px;
-}
-.pudu .icon-exclamation-sign {
-  background-position: 0 -120px;
-}
-.pudu .icon-gift {
-  background-position: -24px -120px;
-}
-.pudu .icon-leaf {
-  background-position: -48px -120px;
-}
-.pudu .icon-fire {
-  background-position: -72px -120px;
-}
-.pudu .icon-eye-open {
-  background-position: -96px -120px;
-}
-.pudu .icon-eye-close {
-  background-position: -120px -120px;
-}
-.pudu .icon-warning-sign {
-  background-position: -144px -120px;
-}
-.pudu .icon-plane {
-  background-position: -168px -120px;
-}
-.pudu .icon-calendar {
-  background-position: -192px -120px;
-}
-.pudu .icon-random {
-  background-position: -216px -120px;
-  width: 16px;
-}
-.pudu .icon-comment {
-  background-position: -240px -120px;
-}
-.pudu .icon-magnet {
-  background-position: -264px -120px;
-}
-.pudu .icon-chevron-up {
-  background-position: -288px -120px;
-}
-.pudu .icon-chevron-down {
-  background-position: -313px -119px;
-}
-.pudu .icon-retweet {
-  background-position: -336px -120px;
-}
-.pudu .icon-shopping-cart {
-  background-position: -360px -120px;
-}
-.pudu .icon-folder-close {
-  background-position: -384px -120px;
-  width: 16px;
-}
-.pudu .icon-folder-open {
-  background-position: -408px -120px;
-  width: 16px;
-}
-.pudu .icon-resize-vertical {
-  background-position: -432px -119px;
-}
-.pudu .icon-resize-horizontal {
-  background-position: -456px -118px;
-}
-.pudu .icon-hdd {
-  background-position: 0 -144px;
-}
-.pudu .icon-bullhorn {
-  background-position: -24px -144px;
-}
-.pudu .icon-bell {
-  background-position: -48px -144px;
-}
-.pudu .icon-certificate {
-  background-position: -72px -144px;
-}
-.pudu .icon-thumbs-up {
-  background-position: -96px -144px;
-}
-.pudu .icon-thumbs-down {
-  background-position: -120px -144px;
-}
-.pudu .icon-hand-right {
-  background-position: -144px -144px;
-}
-.pudu .icon-hand-left {
-  background-position: -168px -144px;
-}
-.pudu .icon-hand-up {
-  background-position: -192px -144px;
-}
-.pudu .icon-hand-down {
-  background-position: -216px -144px;
-}
-.pudu .icon-circle-arrow-right {
-  background-position: -240px -144px;
-}
-.pudu .icon-circle-arrow-left {
-  background-position: -264px -144px;
-}
-.pudu .icon-circle-arrow-up {
-  background-position: -288px -144px;
-}
-.pudu .icon-circle-arrow-down {
-  background-position: -312px -144px;
-}
-.pudu .icon-globe {
-  background-position: -336px -144px;
-}
-.pudu .icon-wrench {
-  background-position: -360px -144px;
-}
-.pudu .icon-tasks {
-  background-position: -384px -144px;
-}
-.pudu .icon-filter {
-  background-position: -408px -144px;
-}
-.pudu .icon-briefcase {
-  background-position: -432px -144px;
-}
-.pudu .icon-fullscreen {
-  background-position: -456px -144px;
-}
 .pudu .dropup,
 .pudu .dropdown {
   position: relative;
@@ -2693,6 +2236,8 @@
   -webkit-appearance: none;
 }
 .pudu .btn {
+  width: auto !important;
+  height: auto !important;
   display: inline-block;
   *display: inline;
   /* IE7 inline-block hack */
@@ -3434,6 +2979,9 @@
 .pudu .affix {
   position: fixed;
 }
+.pudu a.btn {
+  text-decoration: none !important;
+}
 body {
   font-family: 'Segoe UI', Tahoma, sans-serif !important;
 }
@@ -3554,19 +3102,20 @@ a.disable:hover {
 .quick-quote-edit-pm > table {
   margin: 0 auto;
 }
-.emo {
+.emo ul {
   margin-left: 0 !important;
 }
-.emo li {
+.emo ul li {
   height: 24px !important;
   width: 24px !important;
   display: block !important;
   margin-left: 5px !important;
-  margin-bottom: 5px !important;
+  margin-top: 10px !important;
+  margin-bottom: 0px !important;
   overflow: hidden !important;
   background-color: white;
 }
-.emo div {
+.emo ul li > div {
   background-image: url('chrome-extension://__MSG_@@extension_id__/imgs/emo.png');
   cursor: pointer;
   position: relative !important;

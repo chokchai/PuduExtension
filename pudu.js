@@ -200,6 +200,11 @@
     $('.pudu-forums-table-row > td, .pudu-forums-table-header > td').css('borderColor', $('.pudu-forums-table-header > td:first').css('backgroundColor'));
   }
 
+  $().UItoTop({
+    scrollSpeed: 'normal',
+    easingType: 'swing'
+  });
+
   if (page.forums) {
     $('title').text($header.text());
   }
@@ -270,7 +275,7 @@
       $(".quick-quote-edit-pm").remove();
       $cbox.after("<div id='" + id + "' class='quick-quote-edit-pm'><div style='text-align:center;'>loading...</div></div>");
       $("html, body").animate({
-        scrollTop: $("#" + id).offset().top - 30
+        scrollTop: $("#" + id).offset().top - 50
       });
       return $.get($(this).data('href')).done(function(res) {
         var $qcom, $res, hiddenName;
@@ -296,7 +301,7 @@
       $(".quick-quote-edit-pm").remove();
       $cbox.after("<div id='" + id + "' class='quick-quote-edit-pm'></div>");
       $("html, body").animate({
-        scrollTop: $("#" + id).offset().top - 30
+        scrollTop: $("#" + id).offset().top - 50
       });
       $receiver = $cbox.find('.pudu-comments-user');
       html = pudu.pmHtml(window.location.href, $receiver.html(), pudu.parseUrlQuery($receiver.attr('href')).id);
@@ -322,11 +327,17 @@
   }
 
   if (page.details || page.viewtopic) {
-    $('body').on('click', '.emo div', function(event) {
+    $('body').on('click', '.emo li > div, .emo a', function(event) {
+      var textareaId;
       event.preventDefault();
       event.stopImmediatePropagation();
       event.stopPropagation();
-      pudu.insertAtCaret($(this).parents('.emo').data('id') + '-textarea', $(this).data('text'));
+      textareaId = $(this).parents('.emo').data('id') + '-textarea';
+      if ($(this).data('text')) {
+        pudu.insertAtCaret(textareaId, $(this).data('text'));
+      } else if ($(this).data('prefix') && $(this).data('suffix')) {
+        pudu.insertWrapCaret(textareaId, $(this).data('prefix'), $(this).data('suffix'));
+      }
       return false;
     });
   }

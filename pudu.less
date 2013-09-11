@@ -3,6 +3,10 @@
 // scope the bootstrap
 .pudu {
   @import "libs/less_bootstrap/bootstrap";
+
+  a.btn {
+    text-decoration: none !important;
+  }
 }
 
 // change font
@@ -148,26 +152,30 @@ a.disable {
 
 // emo
 .emo {
-  margin-left: 0 !important;
-}
 
-.emo li {
-  height: 24px !important;
-  width: 24px !important;
-  display: block !important;
-  margin-left: 5px !important;
-  margin-bottom: 5px !important;
-  overflow: hidden !important;
-  background-color: white;
-}
+  ul {
+    margin-left: 0 !important;
 
-.emo div {
-  background-image:url('chrome-extension://__MSG_@@extension_id__/imgs/emo.png');
-  cursor: pointer;
-  position: relative !important;
-  display: block !important;
-  height: 48px !important;
-  width: 48px !important;
-  margin-top: -12px !important;
-  margin-left: -12px !important;
+    li {
+      height: 24px !important;
+      width: 24px !important;
+      display: block !important;
+      margin-left: 5px !important;
+      margin-top: 10px !important;
+      margin-bottom: 0px !important;
+      overflow: hidden !important;
+      background-color: white;
+    }
+
+    li > div {
+      background-image:url('chrome-extension://__MSG_@@extension_id__/imgs/emo.png');
+      cursor: pointer;
+      position: relative !important;
+      display: block !important;
+      height: 48px !important;
+      width: 48px !important;
+      margin-top: -12px !important;
+      margin-left: -12px !important;
+    }
+  }
 }

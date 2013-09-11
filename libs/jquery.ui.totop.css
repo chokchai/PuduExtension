@@ -1,0 +1,35 @@
+/*
+|--------------------------------------------------------------------------
+| UItoTop jQuery Plugin 1.2
+| http://www.mattvarone.com/web-design/uitotop-jquery-plugin/
+|--------------------------------------------------------------------------
+*/
+
+#toTop {
+	display:none;
+	text-decoration:none;
+	position:fixed;
+	bottom:0px;
+	right:8px;
+	overflow:hidden;
+	width:51px;
+	height:31px;
+	border:none;
+	text-indent:100%;
+	background:url('chrome-extension://__MSG_@@extension_id__/imgs/jquery.ui.totop.png') no-repeat left -10px;
+}
+
+#toTopHover {
+	width:41px;
+	height:31px;
+	display:block;
+	overflow:hidden;
+	float:left;
+	opacity: 0;
+	-moz-opacity: 0;
+	filter:alpha(opacity=0);
+}
+
+#toTop:active, #toTop:focus {
+	outline:none;
+}

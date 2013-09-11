@@ -3,7 +3,7 @@
 
     "name": "Pudu Extension",
     "description": "Pudu Extension is extension that will make your site look clean and clear!",
-    "version": "1.0.4.1",
+    "version": "1.0.5",
 
     "permissions": [
         "http://*.lolthai.com/"
@@ -13,10 +13,13 @@
         {
             "matches": ["http://*.lolthai.com/*"],
             "css": [
+                "libs/jquery.ui.totop.css",
+                "libs/font-awesome.min.css",
                 "pudu.css"
             ],
             "js": [
                 "libs/jquery-2.0.3.min.js",
+                "libs/jquery.ui.totop.min.js",
                 "utils.js",
                 "pudu.js"
             ]
@@ -47,6 +50,12 @@
         "popup.map",
         "popup.coffee",
         "popup.js",
-        "imgs/emo.png"
+        "imgs/emo.png",
+        "imgs/jquery.ui.totop.png",
+        "font/FontAwesome.otf",
+        "font/fontawesome-webfont.eot",
+        "font/fontawesome-webfont.svg",
+        "font/fontawesome-webfont.ttf",
+        "font/fontawesome-webfont.woff"
     ]
 }

@@ -203,6 +203,9 @@ if page.forums
 # operations
 #######################################
 
+# to top button
+$().UItoTop(scrollSpeed: 'normal', easingType: 'swing');
+
 if page.forums
 
   # set title
@@ -296,7 +299,7 @@ if page.viewtopic
     $cbox.after "<div id='#{id}' class='quick-quote-edit-pm'><div style='text-align:center;'>loading...</div></div>"
 
     # move scroll
-    $("html, body").animate scrollTop: $("##{id}").offset().top-30
+    $("html, body").animate scrollTop: $("##{id}").offset().top-50
 
     # get data from server
     $.get($(@).data 'href')
@@ -338,7 +341,7 @@ if page.viewtopic
     $cbox.after "<div id='#{id}' class='quick-quote-edit-pm'></div>"
 
     # move scroll
-    $("html, body").animate scrollTop: $("##{id}").offset().top-30
+    $("html, body").animate scrollTop: $("##{id}").offset().top-50
 
     # add pm html
     $receiver = $cbox.find('.pudu-comments-user')
@@ -377,11 +380,17 @@ if page.details
 
 if page.details or page.viewtopic
   # bind emo
-  $('body').on 'click', '.emo div', (event)->
+  $('body').on 'click', '.emo li > div, .emo a', (event)->
     event.preventDefault();
     event.stopImmediatePropagation();
     event.stopPropagation();
-    pudu.insertAtCaret($(@).parents('.emo').data('id')+'-textarea', $(this).data('text'));
+
+    textareaId = $(@).parents('.emo').data('id')+'-textarea'
+    if $(@).data 'text'
+      pudu.insertAtCaret(textareaId, $(@).data('text'));
+    else if $(@).data('prefix') and $(@).data('suffix')
+      pudu.insertWrapCaret textareaId, $(@).data('prefix'), $(@).data('suffix')
+
     return false;
 
 if page.browse
