@@ -4,9 +4,13 @@
 
 pudu = {}
 
-pudu.parseUrlQuery = () ->
+pudu.random = (prefix)->
+  rand = parseInt(Math.random()*100000000)
+  if prefix then "#{prefix}_#{rand}" else rand
+
+pudu.parseUrlQuery = (uri = window.location.href) ->
   queryAsAssoc = []
-  queryString = top.location.search.substring 1
+  queryString = uri.substring(uri.indexOf('?')+1)
   keyValues = queryString.split '&'
 
   for key in keyValues
@@ -14,6 +18,14 @@ pudu.parseUrlQuery = () ->
     queryAsAssoc[k[0]] = k[1]
 
   return queryAsAssoc
+
+pudu.updateUrlQuery = (uri, key, value)->
+  re = new RegExp("([?|&])" + key + "=.*?(&|$)", "i")
+  separator = if uri.indexOf('?') != -1 then "&" else "?"
+  if uri.match re
+    uri.replace(re, '$1' + key + "=" + value + '$2')
+  else
+    uri + separator + key + "=" + value
 
 pudu.insertAtCaret = (areaId, text)->
   txtarea = document.getElementById(areaId);
@@ -32,8 +44,8 @@ pudu.insertAtCaret = (areaId, text)->
   txtarea.focus();
   txtarea.scrollTop = scrollPos;
 
-pudu.emoHtml = () ->
-  '<div class="pudu"><ul id="emo" class="thumbnails">
+pudu.emoHtml = (id) ->
+  '<div class="pudu"><ul class="emo thumbnails" data-id="'+id+'">
           <li class="thumbnail"><div style="background-position: 0px 0px;"  data-text=":baby:" href="javascript:void(0);"></div></li>
           <li class="thumbnail"><div style="background-position: -48px 0px;"  data-text=":blink:" href="javascript:void(0);"></div></li>
           <li class="thumbnail"><div style="background-position: -96px 0px;"  data-text=":bow:"  href="javascript:void(0);"></div></li>
@@ -65,10 +77,10 @@ pudu.emoHtml = () ->
           <li class="thumbnail"><div style="background-position: -1344px 0px;"  data-text=";-)"  href="javascript:void(0);"></div></li>
           <li class="thumbnail"><div style="background-position: -1392px 0px;"  data-text=":yes:"  href="javascript:void(0);"></div></li>
           </ul></div>'
-pudu.commentHtml = (action, hidden, textarea) ->
-  '<div>
-          <table id="pudu-quick-comment" width="750" border="0" cellspacing="0" cellpadding="10">
-          <tbody>
+pudu.commentHtml = (action, hidden, textarea, id = "pudu-quick-comment-#{pudu.random()}", cancel=false)->
+          '<div>
+        <table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
+          <tbody id="pudu-quick-comment">
           <tr>
             <td align="center" style="border:0;">
               <form method="post" action="' + action + '">
@@ -78,8 +90,8 @@ pudu.commentHtml = (action, hidden, textarea) ->
                 <tr>
                   <td align="left" style="padding: 0px; border-bottom: 0;">
                     <div style="padding:15px 15px 0 15px;">
-                    <b>Comment</b>
-                    <textarea id="pudu-comment-textarea" name="' + textarea + '" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>' + pudu.emoHtml() + '
+                    <b class="pudu-quick-comment-title">Comment</b>
+                    <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="' + textarea + '" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>' + pudu.emoHtml(id) + '
                     </div>
                   </td>
                 </tr>
@@ -87,17 +99,57 @@ pudu.commentHtml = (action, hidden, textarea) ->
                   <td align="center" style="border-top:0;">
                     <div style="padding-bottom: 15px;">
                     <input type="submit" class="btn" value="Submit">
+                    '+(if cancel then '<input type="button" class="btn pudu-btn-remove-quick-form" value="Cancel">' else '')+'
                     </div>
                   </td>
                 </tr>
                 </tbody>
                 </table>
               </form>
-              <p align="center"><a href="tags.php" target="_blank">Tags<img src="pic/new.gif"></a> | <a href="smilies.php" target="_blank">Smilies</a></p>
             </td>
           </tr>
           </tbody>
           </table>
           </div>'
+
+pudu.pmHtml = (returnto, receiverUser, receiverId, id = "pudu-qucik-pm-#{pudu.random()}")->
+  '<table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
+        <tbody>
+        <tr>
+          <td align="center" style="border:0;">
+            <form method="post" action="takemessage.php">
+            <input type="hidden" name="returnto" value="'+returnto+'">
+            <input type="hidden" name="receiver" value="'+receiverId+'">
+            <table class="main" border="0" cellspacing="0" cellpadding="5">
+              <tbody>
+              <tr>
+                <td align="left" style="padding: 0px; border-bottom: 0;">
+                  <div style="padding:15px 15px 0 15px;">
+                  <b class="pudu-quick-comment-title">PM to '+receiverUser+'</b>
+                  <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="msg" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>' + pudu.emoHtml(id) + '
+                  </div>
+                </td>
+              </tr>
+              <tr>
+  		          <td align="center" style="border-top:0; border-bottom: 0;"><input type="checkbox" name="save" value="yes" checked="">Save message to Sentbox</td>
+              </tr>
+              <tr>
+                <td align="center" style="border-top:0; border-bottom: 0;"><input type="text" size="30" name="money" value="ถ้าจะโอนเงินใส่จำนวนเงินที่นี่"></td>
+              </tr>
+              <tr>
+                <td align="center" style="border-top:0;">
+                  <div style="padding-bottom: 15px;">
+                  <input type="submit" class="btn" value="Submit">
+                  <input type="button" class="btn pudu-btn-remove-quick-form" value="Cancel">
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+              </table>
+            </form>
+          </td>
+        </tr>
+        </tbody>
+        </table>'
 
 window.pudu = pudu;

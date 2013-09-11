@@ -3475,7 +3475,7 @@ img[alt="pet"] {
   max-width: 38px;
 }
 .pudu-comments-content img {
-  max-width: 720px;
+  max-width: 700px;
 }
 .pudu-comments-box {
   display: block;
@@ -3537,6 +3537,10 @@ img[alt="pet"] {
 .pudu-forums-table-row > td.pudu-forums-table-row-lasttopic {
   border-right-width: 1px;
 }
+.pudu-browse-table-row-snatched,
+.pudu-browse-table-row-files {
+  display: none;
+}
 a.disable {
   text-decoration: none !important;
   cursor: default !important;
@@ -3544,19 +3548,25 @@ a.disable {
 a.disable:hover {
   color: inherit;
 }
-#emo {
-  margin-left: 0;
+.quick-quote-edit-pm {
+  margin-bottom: 10px;
 }
-#emo li {
+.quick-quote-edit-pm > table {
+  margin: 0 auto;
+}
+.emo {
+  margin-left: 0 !important;
+}
+.emo li {
   height: 24px !important;
   width: 24px !important;
   display: block !important;
-  margin-left: 5px;
-  margin-bottom: 5px;
+  margin-left: 5px !important;
+  margin-bottom: 5px !important;
   overflow: hidden !important;
   background-color: white;
 }
-#emo div {
+.emo div {
   background-image: url('chrome-extension://__MSG_@@extension_id__/imgs/emo.png');
   cursor: pointer;
   position: relative !important;

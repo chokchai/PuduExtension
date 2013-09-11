@@ -36,7 +36,7 @@
     $commentsPmLink = $commentsHeader.find('a[href^="sendmessage.php"]');
     $commentsQuoteLink = $commentsHeader.find('a[href^="?action=quotepost"]');
     $commentsLikeLink = $commentsHeader.find('a[href^="forums.php?action=likes"]');
-    $commentsEditLink = $commentsHeader.find('a[href^="forums.php?action=editpost"]');
+    $commentsEditLink = $commentsHeader.find('a[href^="?action=editpost"]');
     $torrentCommentLink = $('a[href^="comment.php?action=add"]');
   }
 
@@ -157,7 +157,7 @@
     $browseTableHeader.removeClass('pudu-browse-table-row').addClass('pudu-browse-table-header');
     $browseTableType.addClass('pudu-browse-table-row-type');
     $browseTableName.addClass('pudu-browse-table-row-name');
-    $browseTableFiles.addClass('pudu-browse-table-row-file');
+    $browseTableFiles.addClass('pudu-browse-table-row-files');
     $browseTableComm.addClass('pudu-browse-table-row-comm');
     $browseTableAdded.addClass('pudu-browse-table-row-added');
     $browseTableSize.addClass('pudu-browse-table-row-size');
@@ -171,6 +171,15 @@
   if (page.viewtopic) {
     $('a[href="#top"]').hide();
     $commentsBox.css('backgroundColor', $commentsHeader.css('backgroundColor'));
+    $commentsEditLink.each(function() {
+      return $(this).attr('data-href', $(this).attr('href')).attr('href', 'javascript:void(0)');
+    });
+    $commentsQuoteLink.each(function() {
+      return $(this).attr('data-href', $(this).attr('href')).attr('href', 'javascript:void(0)');
+    });
+    $commentsPmLink.each(function() {
+      return $(this).attr('data-href', $(this).attr('href')).attr('href', 'javascript:void(0)');
+    });
   }
 
   if (page.details) {
@@ -184,7 +193,7 @@
   if (page.browse) {
     $('.pudu-browse-table-row > td, .pudu-browse-table-header > td').css('borderColor', $('.pudu-browse-table-header > td:first').css('backgroundColor'));
     $browseTableHeader.find('a').css('color', $browseTableHeader.find('td').css('color'));
-    $browseTableRow.find('img[src="pic/xr.gif"], img[src="pic/xl.gif"]').hide();
+    $browseTableRow.find('img[src="pic/xr.gif"], img[src="pic/xl.gif"]').remove();
   }
 
   if (page.forums) {
@@ -233,7 +242,9 @@
       } else if (score > 40) {
         focus = 5;
       }
-      return $commentsBox.filter("[name='" + name + "']").addClass("focus-" + focus);
+      if (focus > 0) {
+        return $commentsBox.filter("[name='" + name + "']").addClass("focus-" + focus);
+      }
     });
     $commentsBox.each(function() {
       var $html, html, name;
@@ -247,6 +258,50 @@
         return $(this).text($(this).text());
       }).end();
       return $header.html($html);
+    });
+    $commentsTableInner.on('click', '.pudu-btn-remove-quick-form', function() {
+      return $(".quick-quote-edit-pm").remove();
+    });
+    $commentsHeader.on('click', '.pudu-comments-edit-link, .pudu-comments-quote-link', function() {
+      var $cbox, id, isEdit;
+      isEdit = $(this).is('.pudu-comments-edit-link');
+      $cbox = $(this).parents('.pudu-comments-box');
+      id = 'quick-' + $cbox.attr('name');
+      $(".quick-quote-edit-pm").remove();
+      $cbox.after("<div id='" + id + "' class='quick-quote-edit-pm'><div style='text-align:center;'>loading...</div></div>");
+      $("html, body").animate({
+        scrollTop: $("#" + id).offset().top - 30
+      });
+      return $.get($(this).data('href')).done(function(res) {
+        var $qcom, $res, hiddenName;
+        hiddenName = isEdit ? 'returnto' : 'topicid';
+        title = isEdit ? 'Edit' : 'Quote ' + $cbox.find('.pudu-comments-user').html();
+        $res = $(res);
+        $qcom = $(pudu.commentHtml($res.find('form').attr('action'), hiddenName, 'body', id, true));
+        $qcom.find('.pudu-quick-comment-textarea').html($res.find('textarea[name="body"]').html());
+        $qcom.find('.pudu-quick-comment-title').html(title);
+        $qcom.find('input[name="' + hiddenName + '"]').val($res.find('input[name="' + hiddenName + '"]').val());
+        $("#" + id).html($qcom.html());
+        return $("#" + id).find('.pudu-quick-comment-textarea').focus();
+      }).fail(function() {
+        return $("#" + id).html('Fail...').fadeOut('slow', function() {
+          return $(this).remove();
+        });
+      });
+    });
+    $commentsHeader.on('click', '.pudu-comments-pm-link', function() {
+      var $cbox, $receiver, html, id;
+      $cbox = $(this).parents('.pudu-comments-box');
+      id = 'quick-' + $cbox.attr('name');
+      $(".quick-quote-edit-pm").remove();
+      $cbox.after("<div id='" + id + "' class='quick-quote-edit-pm'></div>");
+      $("html, body").animate({
+        scrollTop: $("#" + id).offset().top - 30
+      });
+      $receiver = $cbox.find('.pudu-comments-user');
+      html = pudu.pmHtml(window.location.href, $receiver.html(), pudu.parseUrlQuery($receiver.attr('href')).id);
+      $("#" + id).html(html);
+      return $("#" + id).find('.pudu-quick-comment-textarea').focus();
     });
   }
 
@@ -267,11 +322,11 @@
   }
 
   if (page.details || page.viewtopic) {
-    $('body').on('click', '#emo div', function(event) {
+    $('body').on('click', '.emo div', function(event) {
       event.preventDefault();
       event.stopImmediatePropagation();
       event.stopPropagation();
-      pudu.insertAtCaret('pudu-comment-textarea', $(this).data('text'));
+      pudu.insertAtCaret($(this).parents('.emo').data('id') + '-textarea', $(this).data('text'));
       return false;
     });
   }

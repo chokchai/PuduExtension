@@ -18,6 +18,7 @@ page =
   browse: url.indexOf('/browse.php') isnt -1
   details: url.indexOf('/details.php') isnt -1
 
+
 #######################################
 # jQuery Elements
 #######################################
@@ -42,7 +43,7 @@ if page.viewtopic or page.details
   $commentsPmLink = $commentsHeader.find 'a[href^="sendmessage.php"]'
   $commentsQuoteLink = $commentsHeader.find 'a[href^="?action=quotepost"]'
   $commentsLikeLink = $commentsHeader.find 'a[href^="forums.php?action=likes"]'
-  $commentsEditLink = $commentsHeader.find 'a[href^="forums.php?action=editpost"]'
+  $commentsEditLink = $commentsHeader.find 'a[href^="?action=editpost"]'
   $torrentCommentLink = $ 'a[href^="comment.php?action=add"]'
 
 if page.viewtopic
@@ -151,7 +152,7 @@ if page.browse
   $browseTableHeader.removeClass('pudu-browse-table-row').addClass 'pudu-browse-table-header'
   $browseTableType.addClass 'pudu-browse-table-row-type'
   $browseTableName.addClass 'pudu-browse-table-row-name'
-  $browseTableFiles.addClass 'pudu-browse-table-row-file'
+  $browseTableFiles.addClass 'pudu-browse-table-row-files'
   $browseTableComm.addClass 'pudu-browse-table-row-comm'
   $browseTableAdded.addClass 'pudu-browse-table-row-added'
   $browseTableSize.addClass 'pudu-browse-table-row-size'
@@ -170,6 +171,10 @@ if page.viewtopic
   $('a[href="#top"]').hide()
   # change comment box color
   $commentsBox.css 'backgroundColor', $commentsHeader.css 'backgroundColor'
+  # change href of quote and edit for quick comment
+  $commentsEditLink.each ()-> $(@).attr('data-href', $(@).attr 'href').attr 'href', 'javascript:void(0)'
+  $commentsQuoteLink.each ()-> $(@).attr('data-href', $(@).attr 'href').attr 'href', 'javascript:void(0)'
+  $commentsPmLink.each ()-> $(@).attr('data-href', $(@).attr 'href').attr 'href', 'javascript:void(0)'
 
 if page.details
   # goto quick comment when click add comment
@@ -187,7 +192,7 @@ if page.browse
   # set table header link font-color
   $browseTableHeader.find('a').css 'color', $browseTableHeader.find('td').css 'color'
   # remove churry image
-  $browseTableRow.find('img[src="pic/xr.gif"], img[src="pic/xl.gif"]').hide()
+  $browseTableRow.find('img[src="pic/xr.gif"], img[src="pic/xl.gif"]').remove()
 
 if page.forums
   # change table display
@@ -240,6 +245,7 @@ if page.viewtopic
     # collect like score
     score = $(this).find('td.embedded[width="99%"] b:last').text()
     name = $(this).attr 'name'
+
     if 10 >= score > 0
       focus = 1
     else if 20 >= score > 10
@@ -250,7 +256,7 @@ if page.viewtopic
       focus = 4
     else if score > 40
       focus = 5
-    $commentsBox.filter("[name='#{name}']").addClass "focus-#{focus}"
+    $commentsBox.filter("[name='#{name}']").addClass "focus-#{focus}" if focus > 0
 
   # edit comment header
   $commentsBox.each ()->
@@ -269,6 +275,78 @@ if page.viewtopic
     $html = $(html).find('a:not(.pudu-comments-user, .pudu-comments-like-link)').each(()-> $(@).text $(@).text()).end()
 
     $header.html($html)
+
+  # remove quick form btton
+  $commentsTableInner.on 'click', '.pudu-btn-remove-quick-form', ()->
+    $(".quick-quote-edit-pm").remove()
+
+  # when click edit load data then insert to quick comment
+  $commentsHeader.on 'click', '.pudu-comments-edit-link, .pudu-comments-quote-link', ()->
+
+    isEdit = $(@).is('.pudu-comments-edit-link')
+
+    # get parrent box
+    $cbox = $(@).parents '.pudu-comments-box'
+    id = 'quick-' + $cbox.attr 'name'
+
+    # remove old edit box
+    $(".quick-quote-edit-pm").remove()
+
+    # show loading
+    $cbox.after "<div id='#{id}' class='quick-quote-edit-pm'><div style='text-align:center;'>loading...</div></div>"
+
+    # move scroll
+    $("html, body").animate scrollTop: $("##{id}").offset().top-30
+
+    # get data from server
+    $.get($(@).data 'href')
+      .done((res)->
+
+        hiddenName = if isEdit then 'returnto' else 'topicid'
+        title = if isEdit then 'Edit' else 'Quote '+$cbox.find('.pudu-comments-user').html()
+
+        # create quick comment
+        $res = $(res)
+        $qcom = $(pudu.commentHtml($res.find('form').attr('action'), hiddenName, 'body', id, true))
+
+        # modify value to can comment
+        $qcom.find('.pudu-quick-comment-textarea').html $res.find('textarea[name="body"]').html()
+        $qcom.find('.pudu-quick-comment-title').html title
+        $qcom.find('input[name="'+hiddenName+'"]').val $res.find('input[name="'+hiddenName+'"]').val()
+
+        # add to loading
+        $("##{id}").html $qcom.html()
+
+        # scroll to comment then focus
+        $("##{id}").find('.pudu-quick-comment-textarea').focus()
+
+      ).fail ()->
+
+        # on fail just show fail message then fade out
+        $("##{id}").html('Fail...').fadeOut 'slow', ()-> $(@).remove()
+
+  # quick pm
+  $commentsHeader.on 'click', '.pudu-comments-pm-link', ()->
+    # get parrent box
+    $cbox = $(@).parents '.pudu-comments-box'
+    id = 'quick-' + $cbox.attr 'name'
+
+    # remove old edit box
+    $(".quick-quote-edit-pm").remove()
+
+    # show loading
+    $cbox.after "<div id='#{id}' class='quick-quote-edit-pm'></div>"
+
+    # move scroll
+    $("html, body").animate scrollTop: $("##{id}").offset().top-30
+
+    # add pm html
+    $receiver = $cbox.find('.pudu-comments-user')
+    html = pudu.pmHtml window.location.href, $receiver.html(), pudu.parseUrlQuery($receiver.attr 'href').id
+    $("##{id}").html html
+
+    # scroll to comment then focus
+    $("##{id}").find('.pudu-quick-comment-textarea').focus()
 
 if page.details
 
@@ -299,11 +377,11 @@ if page.details
 
 if page.details or page.viewtopic
   # bind emo
-  $('body').on 'click', '#emo div', (event)->
+  $('body').on 'click', '.emo div', (event)->
     event.preventDefault();
     event.stopImmediatePropagation();
     event.stopPropagation();
-    pudu.insertAtCaret('pudu-comment-textarea', $(this).data('text'));
+    pudu.insertAtCaret($(@).parents('.emo').data('id')+'-textarea', $(this).data('text'));
     return false;
 
 if page.browse
