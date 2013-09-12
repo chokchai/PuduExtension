@@ -21,5 +21,12 @@ Features
 Todo
 ----
 
-- More Emoticon
+- More Emoticon (Line ?)
 - Redesign Spoiler tag
+
+Development Note
+----------------
+
+- Modified libs/less_bootstrap/bootstrap.less file (many...)
+- Modified libs/font-awesome.min.css by adding !important to Font-family in css file
+- Modified libs/jquery.ui.totop.css by resize totop button
