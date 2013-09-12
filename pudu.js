@@ -106,6 +106,8 @@
 
   $content.addClass('pudu-content');
 
+  $header.addClass('pudu-header');
+
   if (page.viewtopic || page.details || page.browse) {
     $topPagination.addClass('pudu-top-pagination');
     $bottomPagination.addClass('pudu-bottom-pagination');
@@ -248,7 +250,7 @@
         focus = 5;
       }
       if (focus > 0) {
-        return $commentsBox.filter("[name='" + name + "']").addClass("focus-" + focus);
+        return $commentsBox.filter("[name='" + name + "']").addClass("focus-" + focus).css('borderColor', $commentsContent.css('borderColor'));
       }
     });
     $commentsBox.each(function() {

@@ -105,6 +105,7 @@ $('body').addClass "pudu-page-#{p}" for p, v of page when v is true
 
 $menu.addClass 'pudu-menu'
 $content.addClass 'pudu-content'
+$header.addClass 'pudu-header'
 
 if page.viewtopic or page.details or page.browse
   $topPagination.addClass 'pudu-top-pagination'
@@ -259,7 +260,7 @@ if page.viewtopic
       focus = 4
     else if score > 40
       focus = 5
-    $commentsBox.filter("[name='#{name}']").addClass "focus-#{focus}" if focus > 0
+    $commentsBox.filter("[name='#{name}']").addClass("focus-#{focus}").css 'borderColor', $commentsContent.css 'borderColor' if focus > 0
 
   # edit comment header
   $commentsBox.each ()->
