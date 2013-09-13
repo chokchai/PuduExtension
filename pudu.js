@@ -15,7 +15,7 @@
     inbox: url.indexOf('/inbox.php') !== -1 && url.indexOf('?out=1') === -1,
     sendinbox: url.indexOf('/inbox.php?out=1'),
     history: url.indexOf('/userhistory.php') !== -1,
-    newtopic: url.indexOf('/forums.php?action=newtopic') !== -1 || url.indexOf('/markets.php?action=newtopic')
+    newtopic: url.indexOf('/forums.php?action=newtopic') !== -1 || url.indexOf('/markets.php?action=newtopic') !== -1
   };
 
   $menu = $('.outer:first');
