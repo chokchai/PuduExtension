@@ -3032,7 +3032,9 @@ img[alt="pet"] {
   max-height: 38px;
   max-width: 38px;
 }
-.pudu-comments-content img {
+.pudu-comments-content img,
+.pudu-message-content img,
+.comment img {
   max-width: 700px;
 }
 .pudu-comments-box {
@@ -3057,6 +3059,9 @@ img[alt="pet"] {
   font-size: 90%;
 }
 .pudu-page-details .pudu-comments-table-inner > tbody > tr > td {
+  border: none;
+}
+.pudu-page-history .pudu-comments-table-inner > tbody > tr > td {
   border: none;
 }
 .pudu-comments-user {
@@ -3106,11 +3111,27 @@ a.disable {
 a.disable:hover {
   color: inherit;
 }
-.quick-quote-edit-pm {
+.quick-box {
   margin-bottom: 10px;
 }
-.quick-quote-edit-pm > table {
+.quick-box > table {
   margin: 0 auto;
+}
+.pudu-message-box {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.pudu-message-box > table > tbody > tr > td {
+  border: 0;
+}
+.pudu-message-menu {
+  margin-bottom: 0;
+  clear: both;
+}
+.pudu-message-menu > table {
+  width: auto !important;
+  float: right;
 }
 .emo ul {
   margin-left: 0 !important;
@@ -3120,18 +3141,17 @@ a.disable:hover {
   width: 24px !important;
   display: block !important;
   margin-left: 5px !important;
-  margin-top: 10px !important;
+  margin-top: 5px !important;
   margin-bottom: 0px !important;
   overflow: hidden !important;
   background-color: white;
 }
 .emo ul li > div {
-  background-image: url('chrome-extension://__MSG_@@extension_id__/imgs/emo.png');
   cursor: pointer;
-  position: relative !important;
-  display: block !important;
-  height: 48px !important;
-  width: 48px !important;
-  margin-top: -12px !important;
-  margin-left: -12px !important;
+  vertical-align: middle;
+}
+.emo ul li > div > img {
+  max-height: 24px;
+  max-width: 24px;
+  vertical-align: middle;
 }

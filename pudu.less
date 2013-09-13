@@ -63,11 +63,14 @@ img[alt="pet"] {
   max-width: 38px;
 }
 
-// change comment display
-.pudu-comments-content img {
+// resize all image in content
+.pudu-comments-content img,
+.pudu-message-content img,
+.comment img {
   max-width: 700px;
 }
 
+// change comment display
 .pudu-comments-box {
   display: block;
   padding: 10px;
@@ -98,6 +101,12 @@ img[alt="pet"] {
 }
 
 .pudu-page-details {
+  .pudu-comments-table-inner > tbody > tr > td {
+    border: none;
+  }
+}
+
+.pudu-page-history {
   .pudu-comments-table-inner > tbody > tr > td {
     border: none;
   }
@@ -152,11 +161,31 @@ a.disable {
   }
 }
 
-.quick-quote-edit-pm {
+.quick-box {
   margin-bottom: 10px;
 
   > table {
     margin: 0 auto;
+  }
+}
+
+// message
+.pudu-message-box {
+
+  .rounded(5px);
+
+  > table > tbody > tr > td {
+    border: 0;
+  }
+}
+
+.pudu-message-menu {
+  margin-bottom: 0;
+  clear: both;
+
+  > table {
+    width: auto !important;
+    float: right;
   }
 }
 
@@ -171,21 +200,22 @@ a.disable {
       width: 24px !important;
       display: block !important;
       margin-left: 5px !important;
-      margin-top: 10px !important;
+      margin-top: 5px !important;
       margin-bottom: 0px !important;
       overflow: hidden !important;
       background-color: white;
     }
 
     li > div {
-      background-image:url('chrome-extension://__MSG_@@extension_id__/imgs/emo.png');
+
       cursor: pointer;
-      position: relative !important;
-      display: block !important;
-      height: 48px !important;
-      width: 48px !important;
-      margin-top: -12px !important;
-      margin-left: -12px !important;
+      vertical-align: middle;
+
+      > img {
+        max-height: 24px;
+        max-width: 24px;
+        vertical-align: middle;
+      }
     }
   }
 }
