@@ -20,7 +20,7 @@ page =
   inbox: url.indexOf('/inbox.php') isnt -1 and url.indexOf('?out=1') is -1
   sendinbox: url.indexOf('/inbox.php?out=1'),
   history: url.indexOf('/userhistory.php') isnt -1,
-  newtopic: url.indexOf('/forums.php?action=newtopic') isnt -1
+  newtopic: url.indexOf('/forums.php?action=newtopic') isnt -1 or url.indexOf('/markets.php?action=newtopic')
 
 
 #######################################
