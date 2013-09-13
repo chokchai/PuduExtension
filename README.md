@@ -24,7 +24,7 @@ Features
 - Redesign History page
 - Added Quick Reply in Inbox page
 - Send Box will highlight on new message
-- New topic now have emotion
+- New topic now have emoticon
 
 Todo
 ----
