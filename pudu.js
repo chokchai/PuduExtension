@@ -431,7 +431,7 @@
       return confirm("Delete all message ?");
     });
     $messageDeleteButton.on('click', function() {
-      return confirm("Delete message form " + ($(this).parents('.pudu-message-box').find('.pudu-message-user').text()) + " ?");
+      return confirm("Delete message from " + ($(this).parents('.pudu-message-box').find('.pudu-message-user').text()) + " ?");
     });
     $messageReplyButton.on('click', function() {
       var $mbox, href, id;

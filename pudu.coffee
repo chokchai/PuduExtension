@@ -543,7 +543,7 @@ if page.sentbox or page.inbox
     return confirm("Delete all message ?")
   $messageDeleteButton.on 'click', ()->
     # confirmation to delete message also show recievier name
-    return confirm("Delete message form #{$(@).parents('.pudu-message-box').find('.pudu-message-user').text()} ?")
+    return confirm("Delete message from #{$(@).parents('.pudu-message-box').find('.pudu-message-user').text()} ?")
 
   ###############
   # quick reply
