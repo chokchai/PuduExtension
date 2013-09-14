@@ -18,7 +18,7 @@ page =
   browse: url.indexOf('/browse.php') isnt -1
   details: url.indexOf('/details.php') isnt -1
   inbox: url.indexOf('/inbox.php') isnt -1 and url.indexOf('?out=1') is -1
-  sendinbox: url.indexOf('/inbox.php?out=1') isnt -1,
+  sentbox: url.indexOf('/inbox.php?out=1') isnt -1,
   history: url.indexOf('/userhistory.php') isnt -1,
   newtopic: url.indexOf('/forums.php?action=newtopic') isnt -1 or url.indexOf('/markets.php?action=newtopic') isnt -1
 
@@ -100,7 +100,7 @@ if page.browse
   $browseTableLeechers = $browseTableRow.find '> td:eq(9)'
   $browseTableUppedby = $browseTableRow.find '> td:eq(10)'
 
-if page.inbox or page.sendinbox
+if page.inbox or page.sentbox
   $messageBox = $ '.main[width=750] td:first > p'
   $messageUser = $messageBox.find '.text:first > b > a[href^="userdetails.php"]'
   $messageContent = $messageBox.find '.text:first > p:eq(0) .text'
@@ -176,7 +176,7 @@ if page.browse
   $browseTableLeechers.addClass 'pudu-browse-table-row-leechers'
   $browseTableUppedby.addClass 'pudu-browse-table-row-uppedby'
 
-if page.inbox or page.sendinbox
+if page.inbox or page.sentbox
   $messageBox.addClass 'pudu-message-box'
   $messageUser.addClass 'pudu-message-user'
   $messageContent.addClass 'pudu-message-content'
@@ -262,7 +262,7 @@ $menu.find('.navigation:last').after \
   ['<td align="center" class="navigation"><a href="userhistory.php?action=viewnewposts&id='+pudu.getCookie('xid')+'">Forums History</a></td>',
   '<td align="center" class="navigation"><a href="userhistory.php?action=viewmarkets&id='+pudu.getCookie('xid')+'">Markets History</a></td>',
   '<td align="center" class="navigation"><a href="inbox.php">Inbox</a></td>',
-  '<td align="center" class="navigation"><a href="inbox.php?out=1">Sendbox</a></td>',
+  '<td align="center" class="navigation"><a href="inbox.php?out=1">Sentbox</a></td>',
   '<td align="center" class="navigation"><a href="logout.php">Logout</a></td>',
   '<td align="center" class="navigation">+<a href="javascript:void(0)" id="pudu-menu-more-button">More</a></td>'].join('')
 
@@ -513,7 +513,7 @@ if page.browse
         $('.pudu-direct-download').removeClass('disable')
       )
 
-if page.sendinbox or page.inbox
+if page.sentbox or page.inbox
 
   # fixed title
   $('title').text $('title').text().replace('--- :: ', '')

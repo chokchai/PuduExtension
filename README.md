@@ -18,12 +18,12 @@ Features
 - Direct download on browse page
 - Add goto top button to every page (on right bottom)
 - Redesign menu and add extra menu (click More to display)
-- Display Images in Inbox and Sendbox
-- Redesign Inbox and Sendbox page
-- Delete and Delete all in Inbox and Sendbox page now have to confirm
+- Display Images in Inbox and Sentbox
+- Redesign Inbox and Sentbox page
+- Delete and Delete all in Inbox and Sentbox page now have to confirm
 - Redesign History page
 - Added Quick Reply in Inbox page
-- Send Box will highlight on new message
+- Sentbox will highlight on new message
 - New topic now have emoticon
 
 Todo

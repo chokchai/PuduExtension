@@ -13,7 +13,7 @@
     browse: url.indexOf('/browse.php') !== -1,
     details: url.indexOf('/details.php') !== -1,
     inbox: url.indexOf('/inbox.php') !== -1 && url.indexOf('?out=1') === -1,
-    sendinbox: url.indexOf('/inbox.php?out=1') !== -1,
+    sentbox: url.indexOf('/inbox.php?out=1') !== -1,
     history: url.indexOf('/userhistory.php') !== -1,
     newtopic: url.indexOf('/forums.php?action=newtopic') !== -1 || url.indexOf('/markets.php?action=newtopic') !== -1
   };
@@ -99,7 +99,7 @@
     $browseTableUppedby = $browseTableRow.find('> td:eq(10)');
   }
 
-  if (page.inbox || page.sendinbox) {
+  if (page.inbox || page.sentbox) {
     $messageBox = $('.main[width=750] td:first > p');
     $messageUser = $messageBox.find('.text:first > b > a[href^="userdetails.php"]');
     $messageContent = $messageBox.find('.text:first > p:eq(0) .text');
@@ -184,7 +184,7 @@
     $browseTableUppedby.addClass('pudu-browse-table-row-uppedby');
   }
 
-  if (page.inbox || page.sendinbox) {
+  if (page.inbox || page.sentbox) {
     $messageBox.addClass('pudu-message-box');
     $messageUser.addClass('pudu-message-user');
     $messageContent.addClass('pudu-message-content');
@@ -255,7 +255,7 @@
     return false;
   });
 
-  $menu.find('.navigation:last').after(['<td align="center" class="navigation"><a href="userhistory.php?action=viewnewposts&id=' + pudu.getCookie('xid') + '">Forums History</a></td>', '<td align="center" class="navigation"><a href="userhistory.php?action=viewmarkets&id=' + pudu.getCookie('xid') + '">Markets History</a></td>', '<td align="center" class="navigation"><a href="inbox.php">Inbox</a></td>', '<td align="center" class="navigation"><a href="inbox.php?out=1">Sendbox</a></td>', '<td align="center" class="navigation"><a href="logout.php">Logout</a></td>', '<td align="center" class="navigation">+<a href="javascript:void(0)" id="pudu-menu-more-button">More</a></td>'].join(''));
+  $menu.find('.navigation:last').after(['<td align="center" class="navigation"><a href="userhistory.php?action=viewnewposts&id=' + pudu.getCookie('xid') + '">Forums History</a></td>', '<td align="center" class="navigation"><a href="userhistory.php?action=viewmarkets&id=' + pudu.getCookie('xid') + '">Markets History</a></td>', '<td align="center" class="navigation"><a href="inbox.php">Inbox</a></td>', '<td align="center" class="navigation"><a href="inbox.php?out=1">Sentbox</a></td>', '<td align="center" class="navigation"><a href="logout.php">Logout</a></td>', '<td align="center" class="navigation">+<a href="javascript:void(0)" id="pudu-menu-more-button">More</a></td>'].join(''));
 
   $menu.find('> table > tbody > tr:first').after('<tr class="pudu-menu-more hide"></tr>');
 
@@ -414,7 +414,7 @@
     });
   }
 
-  if (page.sendinbox || page.inbox) {
+  if (page.sentbox || page.inbox) {
     $('title').text($('title').text().replace('--- :: ', ''));
     $messageContent.each(function() {
       return $(this).html(pudu.parseBBCodeImage($(this).html()));
