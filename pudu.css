@@ -3127,11 +3127,6 @@ a.disable:hover {
 }
 .pudu-message-menu {
   margin-bottom: 0;
-  clear: both;
-}
-.pudu-message-menu > table {
-  width: auto !important;
-  float: right;
 }
 .emo ul {
   margin-left: 0 !important;

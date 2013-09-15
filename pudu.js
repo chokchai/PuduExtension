@@ -255,7 +255,7 @@
     return false;
   });
 
-  $menu.find('.navigation:last').after(['<td align="center" class="navigation"><a href="userhistory.php?action=viewnewposts&id=' + pudu.getCookie('xid') + '">Forums History</a></td>', '<td align="center" class="navigation"><a href="userhistory.php?action=viewmarkets&id=' + pudu.getCookie('xid') + '">Markets History</a></td>', '<td align="center" class="navigation"><a href="inbox.php">Inbox</a></td>', '<td align="center" class="navigation"><a href="inbox.php?out=1">Sentbox</a></td>', '<td align="center" class="navigation"><a href="logout.php">Logout</a></td>', '<td align="center" class="navigation">+<a href="javascript:void(0)" id="pudu-menu-more-button">More</a></td>'].join(''));
+  $menu.find('.navigation:last').after(['<td align="center" class="navigation"><a href="inbox.php">Inbox</a></td>', '<td align="center" class="navigation"><a href="inbox.php?out=1">Sentbox</a></td>', '<td align="center" class="navigation"><a href="logout.php">Logout</a></td>', '<td align="center" class="navigation">+<a href="javascript:void(0)" id="pudu-menu-more-button">More</a></td>'].join(''));
 
   $menu.find('> table > tbody > tr:first').after('<tr class="pudu-menu-more hide"></tr>');
 
@@ -265,7 +265,7 @@
     return $menuMore.toggleClass('hide');
   });
 
-  $menuMore.append('<td align="center" class="navigation"><a href="userdetails.php?id=' + pudu.getCookie('xid') + '">User</a></td>', $menu.find('a[href="http://lolthai.com/pets.php"]').parent(), $menu.find('a[href="http://lolthai.com/faq.php"]').parent().attr('colspan', 2), $menu.find('a[href="http://lolthai.com/oforums.php"]').parent(), '<td align="center" class="navigation"><a href="bookmark.php">Bookmark</a></td>', $menu.find('a[href="http://lolthai.com/topten.php"]').parent(), $menu.find('a[href="http://lolthai.com/arena.php"]').parent(), '<td align="center" class="navigation" colspan="2"><a href="users.php">Search Users</a></td>', $menu.find('a[href="http://lolthai.com/casino.php"]').parent(), $menu.find('a[href="http://lolthai.com/chat.php"]').parent());
+  $menuMore.append('<td align="center" class="navigation"><a href="userdetails.php?id=' + pudu.getCookie('xid') + '">User</a></td>', $menu.find('a[href="http://lolthai.com/oforums.php"]').parent(), '<td align="center" colspan="2" class="navigation"><a href="userhistory.php?action=viewnewposts&id=' + pudu.getCookie('xid') + '">Forums History</a></td>', '<td align="center" class="navigation"><a href="userhistory.php?action=viewmarkets&id=' + pudu.getCookie('xid') + '">Markets History</a></td>', $menu.find('a[href="http://lolthai.com/pets.php"]').parent(), '<td align="center" class="navigation"><a href="bookmark.php">Bookmark</a></td>', $menu.find('a[href="http://lolthai.com/arena.php"]').parent(), '<td align="center" class="navigation" colspan="2"><a href="users.php">Search Users</a></td>', $menu.find('a[href="http://lolthai.com/casino.php"]').parent(), $menu.find('a[href="http://lolthai.com/chat.php"]').parent());
 
   if (page.forums) {
     $('title').text($header.text());
