@@ -3,7 +3,7 @@
 
     "name": "Pudu Extension",
     "description": "Pudu Extension is extension that will make your site look clean and clear!",
-    "version": "1.0.7.8",
+    "version": "1.0.7.9",
 
     "permissions": [
         "http://*.lolthai.com/"
