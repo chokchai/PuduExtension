@@ -205,22 +205,28 @@ if page.details
 
 if page.viewforum
   # change table display
-  $('.pudu-topic-table-row > td, .pudu-topic-table-header > td')
-    .css 'borderColor', $('.pudu-topic-table-header > td:first').css 'backgroundColor'
+  jQuery ($)->
+    $('.pudu-topic-table-row > td, .pudu-topic-table-header > td')
+      .css 'borderColor', $('.pudu-topic-table-header > td:first').css 'backgroundColor'
 
 if page.browse
   # change table display
-  $('.pudu-browse-table-row > td, .pudu-browse-table-header > td')
-  .css 'borderColor', $('.pudu-browse-table-header > td:first').css 'backgroundColor'
+  jQuery ($)->
+    $('.pudu-browse-table-row > td, .pudu-browse-table-header > td')
+    .css 'borderColor', $('.pudu-browse-table-header > td:first').css 'backgroundColor'
   # set table header link font-color
   $browseTableHeader.find('a').css 'color', $browseTableHeader.find('td').css 'color'
   # remove churry image
   $browseTableRow.find('img[src="pic/xr.gif"], img[src="pic/xl.gif"]').remove()
+  # Browse header patch
+  $browseTableHeader.find('.pudu-browse-table-row-seeders a').text 'Seeds'
+  $browseTableHeader.find('.pudu-browse-table-row-leechers a').text 'Leechs'
 
 if page.forums
   # change table display
-  $('.pudu-forums-table-row > td, .pudu-forums-table-header > td')
-  .css 'borderColor', $('.pudu-forums-table-header > td:first').css 'backgroundColor'
+  jQuery ($)->
+    $('.pudu-forums-table-row > td, .pudu-forums-table-header > td')
+    .css 'borderColor', $('.pudu-forums-table-header > td:first').css 'backgroundColor'
 
 if page.inbox
   $messageReplyButton.each ()-> $(@).attr('data-href', $(@).attr 'href').attr 'href', 'javascript:void(0)'
@@ -475,13 +481,21 @@ if page.browse
   ###############
   $browseTableName.each ()->
     # add url to link as data
-    link = $(this).find('a:first')
+    link = $(@).find('a:first')
     if link.size() > 0
-      $td = $(this).siblings('.pudu-browse-table-row-peers').html("<a class='pudu-direct-download' data-url='#{link.attr('href')}' href='javascript:void(0);'>torrent</a>")
+      $td = $(@).siblings('.pudu-browse-table-row-snatched').html "<a class='pudu-direct-download' data-url='#{link.attr('href')}' href='javascript:void(0);'>torrent</a>"
     else
-      $td = $(this).siblings('.pudu-browse-table-row-peers').text('Download')
+      $td = $(@).siblings('.pudu-browse-table-row-snatched').html 'Download'
 
-    $(this).after($td)
+    $(@).after $td
+
+  ################
+  # change peer to sum of seeder and leecher
+  ################
+  $browseTablePeers.filter(':gt(0)').each ()->
+    seeder = parseInt $(@).siblings('.pudu-browse-table-row-seeders').text()
+    leecher = parseInt $(@).siblings('.pudu-browse-table-row-leechers').text()
+    $(@).text seeder + leecher
 
   ###############
   # onclick download torrent link
@@ -629,14 +643,14 @@ window.onload = ()->
 #######################################
 # Google Analytics
 #######################################
-`
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-33895633-10']);
-_gaq.push(['_trackPageview']);
 
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-`
+$('body').append(
+  "<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-33895633-10', 'lolthai.com');
+    ga('send', 'pageview');
+  </script>"
+);

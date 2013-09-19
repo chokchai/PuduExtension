@@ -474,7 +474,7 @@ td.embedded>img[alt="pet"],img[alt="pet"]{max-height:38px;max-width:38px}
 .pudu-topic-table td,.pudu-browse-table td,.pudu-forums-table td{padding:7px 10px}
 .pudu-topic-table-row>td,.pudu-browse-table-row>td,.pudu-forums-table-row>td{border-left-width:0;border-right-width:0}.pudu-topic-table-row>td.pudu-topic-table-row-topic,.pudu-browse-table-row>td.pudu-topic-table-row-topic,.pudu-forums-table-row>td.pudu-topic-table-row-topic,.pudu-topic-table-row>td.pudu-browse-table-row-type,.pudu-browse-table-row>td.pudu-browse-table-row-type,.pudu-forums-table-row>td.pudu-browse-table-row-type,.pudu-topic-table-row>td.pudu-forums-table-row-forum,.pudu-browse-table-row>td.pudu-forums-table-row-forum,.pudu-forums-table-row>td.pudu-forums-table-row-forum{border-left-width:1px}
 .pudu-topic-table-row>td.pudu-topic-table-row-lastpost,.pudu-browse-table-row>td.pudu-topic-table-row-lastpost,.pudu-forums-table-row>td.pudu-topic-table-row-lastpost,.pudu-topic-table-row>td.pudu-browse-table-row-uppedby,.pudu-browse-table-row>td.pudu-browse-table-row-uppedby,.pudu-forums-table-row>td.pudu-browse-table-row-uppedby,.pudu-topic-table-row>td.pudu-forums-table-row-lasttopic,.pudu-browse-table-row>td.pudu-forums-table-row-lasttopic,.pudu-forums-table-row>td.pudu-forums-table-row-lasttopic{border-right-width:1px}
-.pudu-browse-table-row-snatched,.pudu-browse-table-row-files{display:none}
+.pudu-browse-table-row-files{display:none}
 a.disable{text-decoration:none !important;cursor:default !important}a.disable:hover{color:inherit}
 .quick-box{margin-bottom:10px}.quick-box>table{margin:0 auto}
 .pudu-message-box{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}.pudu-message-box>table>tbody>tr>td{border:0}

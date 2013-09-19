@@ -213,17 +213,25 @@
   }
 
   if (page.viewforum) {
-    $('.pudu-topic-table-row > td, .pudu-topic-table-header > td').css('borderColor', $('.pudu-topic-table-header > td:first').css('backgroundColor'));
+    jQuery(function($) {
+      return $('.pudu-topic-table-row > td, .pudu-topic-table-header > td').css('borderColor', $('.pudu-topic-table-header > td:first').css('backgroundColor'));
+    });
   }
 
   if (page.browse) {
-    $('.pudu-browse-table-row > td, .pudu-browse-table-header > td').css('borderColor', $('.pudu-browse-table-header > td:first').css('backgroundColor'));
+    jQuery(function($) {
+      return $('.pudu-browse-table-row > td, .pudu-browse-table-header > td').css('borderColor', $('.pudu-browse-table-header > td:first').css('backgroundColor'));
+    });
     $browseTableHeader.find('a').css('color', $browseTableHeader.find('td').css('color'));
     $browseTableRow.find('img[src="pic/xr.gif"], img[src="pic/xl.gif"]').remove();
+    $browseTableHeader.find('.pudu-browse-table-row-seeders a').text('Seeds');
+    $browseTableHeader.find('.pudu-browse-table-row-leechers a').text('Leechs');
   }
 
   if (page.forums) {
-    $('.pudu-forums-table-row > td, .pudu-forums-table-header > td').css('borderColor', $('.pudu-forums-table-header > td:first').css('backgroundColor'));
+    jQuery(function($) {
+      return $('.pudu-forums-table-row > td, .pudu-forums-table-header > td').css('borderColor', $('.pudu-forums-table-header > td:first').css('backgroundColor'));
+    });
   }
 
   if (page.inbox) {
@@ -390,11 +398,17 @@
       var $td, link;
       link = $(this).find('a:first');
       if (link.size() > 0) {
-        $td = $(this).siblings('.pudu-browse-table-row-peers').html("<a class='pudu-direct-download' data-url='" + (link.attr('href')) + "' href='javascript:void(0);'>torrent</a>");
+        $td = $(this).siblings('.pudu-browse-table-row-snatched').html("<a class='pudu-direct-download' data-url='" + (link.attr('href')) + "' href='javascript:void(0);'>torrent</a>");
       } else {
-        $td = $(this).siblings('.pudu-browse-table-row-peers').text('Download');
+        $td = $(this).siblings('.pudu-browse-table-row-snatched').html('Download');
       }
       return $(this).after($td);
+    });
+    $browseTablePeers.filter(':gt(0)').each(function() {
+      var leecher, seeder;
+      seeder = parseInt($(this).siblings('.pudu-browse-table-row-seeders').text());
+      leecher = parseInt($(this).siblings('.pudu-browse-table-row-leechers').text());
+      return $(this).text(seeder + leecher);
     });
     $('.pudu-direct-download').on('click', function() {
       var _this = this;
@@ -489,17 +503,7 @@
     }
   };
 
-  
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-33895633-10']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = 'https://ssl.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-;
+  $('body').append("<script>    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');    ga('create', 'UA-33895633-10', 'lolthai.com');    ga('send', 'pageview');  </script>");
 
 }).call(this);
 
