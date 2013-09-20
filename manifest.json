@@ -3,7 +3,7 @@
 
     "name": "Pudu Extension",
     "description": "Pudu Extension is extension that will make your site look clean and clear!",
-    "version": "1.0.7.10",
+    "version": "1.0.7.11",
 
     "permissions": [
         "http://*.lolthai.com/"
@@ -21,7 +21,9 @@
                 "libs/jquery-2.0.3.min.js",
                 "libs/jquery.ui.totop.min.js",
                 "utils.min.js",
-                "pudu.min.js"
+                "pudu.min.js",
+                "libs/ga-config.min.js",
+                "libs/ga.js"
             ]
         }
     ],
