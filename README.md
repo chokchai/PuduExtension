@@ -25,6 +25,7 @@ Features
 - Added Quick Reply in Inbox page
 - Sentbox will highlight on new message
 - New topic now have emoticon
+- Added SS cleaner
 
 Todo
 ----
