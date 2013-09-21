@@ -999,8 +999,8 @@
   };
 
   pudu.parseBBCodeImage = function(text) {
-    while (text.indexOf('[img]') !== -1) {
-      text = text.replace('[img]', '<img style="max-width: 700px;" src="').replace('[/img]', '" />');
+    while (text.indexOf('[img]') !== -1 || text.indexOf('[IMG]') !== -1) {
+      text = text.replace('[img]', '<img style="max-width: 700px;" src="').replace('[IMG]', '<img style="max-width: 700px;" src="').replace('[/img]', '" />').replace('[/IMG]', '" />');
     }
     return text;
   };

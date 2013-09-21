@@ -242,8 +242,11 @@ pudu.replyHtml = (receiverUser, receiverId, originalMessageId, message, id="pudu
 
 
 pudu.parseBBCodeImage = (text)->
-  while text.indexOf('[img]') isnt -1
-    text = text.replace('[img]', '<img style="max-width: 700px;" src="').replace('[/img]', '" />')
+  while text.indexOf('[img]') isnt -1 or text.indexOf('[IMG]') isnt -1
+    text = text.replace('[img]', '<img style="max-width: 700px;" src="')
+                .replace('[IMG]', '<img style="max-width: 700px;" src="')
+                .replace('[/img]', '" />')
+                .replace('[/IMG]', '" />')
   return text
 
 pudu.getCookie = (c_name)->
