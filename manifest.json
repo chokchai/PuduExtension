@@ -25,6 +25,19 @@
                 "libs/ga-config.min.js",
                 "libs/ga.js"
             ]
+        },
+        {
+            "matches": [
+                "http://*.temppic.com/img.php*",
+                "http://image.ohozaa.com/view*",
+                "http://*.iwoow.in/i-i/*",
+                "http://*.imgchili.net/show/*",
+                "http://*.wezatv.com/pic/*"
+            ],
+            "js": [
+                "libs/jquery-2.0.3.min.js",
+                "ss-cleaner.min.js"
+            ]
         }
     ],
 
@@ -51,8 +64,8 @@
         "utils.coffee",
         "popup.map",
         "popup.coffee",
-        "popup.js",
-        "imgs/emo.png",
+        "ss-cleaner.coffee",
+        "ss-cleaner.map",
         "imgs/jquery.ui.totop.png",
         "font/FontAwesome.otf",
         "font/fontawesome-webfont.eot",
