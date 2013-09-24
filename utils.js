@@ -1092,26 +1092,6 @@
     return c_value;
   };
 
-  pudu.versionCompare = function(left, right) {
-    var a, b, i, len;
-    if (typeof left + typeof right !== 'stringstring') {
-      return false;
-    }
-    a = left.split('.');
-    b = right.split('.');
-    i = 0;
-    len = Math.max(a.length, b.length);
-    while (i < len) {
-      if ((a[i] && !b[i] && parseInt(a[i]) > 0) || (parseInt(a[i]) > parseInt(b[i]))) {
-        return 1;
-      } else if ((b[i] && !a[i] && parseInt(b[i]) > 0) || (parseInt(a[i]) < parseInt(b[i]))) {
-        return -1;
-      }
-      i++;
-    }
-    return 0;
-  };
-
   window.pudu = pudu;
 
 }).call(this);
