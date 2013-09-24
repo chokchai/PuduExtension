@@ -26,11 +26,11 @@ Features
 - Sentbox will highlight on new message
 - New topic now have emoticon
 - Added SS cleaner
+- Added Line emotion
 
 Todo
 ----
 
-- More Emoticon (Line ?)
 - Redesign Spoiler tag
 - Preview post ?
 

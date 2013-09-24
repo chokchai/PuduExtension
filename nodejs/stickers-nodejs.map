@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "stickers-nodejs.js",
+  "sourceRoot": "",
+  "sources": [
+    "stickers-nodejs.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAIA;CAAA,KAAA,mDAAA;;CAAA,CAAA,CAAc,QAAd,mCAAA;;CAAA,CAEA,CAAK,CAAA,GAAA;;CAFL,CAKA,CAAA,QAAM;;CALN,CAMA,CAAW,KAAX;;AAGA,CAAA,MAAA,mCAAA;0BAAA;CAEE,GAAA,IAAS,EAAA;;CAAe;CAAA;YAAA,iCAAA;wBAAA;AAAuH,CAApB,EAAD,CAAH,CAAuB,CAAvB,CAAA;CAA/F,EAAY,EAAH,GAAT;UAAA;CAAA;;CAAxB;CAFF,EATA;;CAAA,CAcA,CAAiE,CAAI,IAAJ,CAAA,IAAjE,KAAA,OAAqC;;CAdrC,CAgBA,CAAA,IAAO,uBAAP;CAhBA"
+}

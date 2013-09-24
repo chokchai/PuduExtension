@@ -254,7 +254,7 @@ $content.on 'click', '.emo li, .emo a', (event)->
   event.stopImmediatePropagation();
   event.stopPropagation();
 
-  textareaId = $(@).parents('.emo').data('id')+'-textarea'
+  textareaId = $(@).parents('.pudu-emo').data('id')+'-textarea'
   if $(@).data 'text'
     pudu.insertAtCaret(textareaId, $(@).data('text'));
   else if $(@).data('prefix') and $(@).data('suffix')

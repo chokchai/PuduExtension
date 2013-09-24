@@ -183,7 +183,47 @@ a.disable {
 }
 
 // emo
+.pudu-emo {
+
+  position: relative;
+  
+  .nav-tabs {
+
+    margin-bottom: 5px;
+
+    a {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    li {
+      margin-top: 5px;
+    }
+  }
+
+  .tab-pane {
+    max-height: 270px;
+    overflow: auto;
+  }
+}
+
 .emo {
+
+  &.sticker {
+
+    & {
+      margin-left: 0px;
+    }
+
+    li {
+      margin: 5px 5px 0 0;
+      padding: 0;
+      background-color: white;
+      cursor: pointer;
+      height: 57px;
+      width: 62px;
+    }
+  }
 
   ul {
     margin-left: 0 !important;
@@ -192,7 +232,8 @@ a.disable {
       height: 24px !important;
       width: 24px !important;
       display: block !important;
-      margin-left: 5px !important;
+      margin-left: 0px !important;
+      margin-right: 5px !important;
       margin-top: 5px !important;
       margin-bottom: 0px !important;
       overflow: hidden !important;

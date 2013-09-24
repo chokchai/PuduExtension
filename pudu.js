@@ -254,7 +254,7 @@
     event.preventDefault();
     event.stopImmediatePropagation();
     event.stopPropagation();
-    textareaId = $(this).parents('.emo').data('id') + '-textarea';
+    textareaId = $(this).parents('.pudu-emo').data('id') + '-textarea';
     if ($(this).data('text')) {
       pudu.insertAtCaret(textareaId, $(this).data('text'));
     } else if ($(this).data('prefix') && $(this).data('suffix')) {

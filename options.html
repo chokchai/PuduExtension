@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Options | Pudu Extension</title>
+    <link rel="stylesheet" href="libs/font-awesome.min.css"/>
+    <link rel="stylesheet" href="libs/bootstrap.min.css"/>
+    <link rel="stylesheet" href="options.min.css"/>
+</head>
+<body style="padding:0 10px;">
+
+<div class="page-header" style="margin-top: 10px; margin-bottom: 15px;">
+    <h1 class="pull-left">
+        <img src="/imgs/pudu-icon-38.png" style="margin-top: -7px;"/>
+        Pudu Extension
+        <small id="pudu-version"></small>
+    </h1>
+    <div class="pull-right">
+        <button class="btn btn-link"><i class="icon-heart"></i> <a href="http://pudu.devindy.com/donate.html" target="_blank">Donate</a></button>
+        <button id="pudu-options-reset" class="btn btn-link"><i class="icon-refresh"></i> Reset extension settings</button>
+    </div>
+    <div class="clearfix"></div>
+</div>
+
+<h3>Line sticker <small>Select what you like!</small></h3>
+<ul class="thumbnails" id="pudu-stickers"></ul>
+
+<!-- HIDE ZONE -->
+<div class="modal hide fade" id="pudu-sticker-modal">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3></h3>
+    </div>
+    <div class="modal-body">
+        <ul class="thumbnails"></ul>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        <button class="btn btn-success"><i class="icon-ok"></i> Select</button>
+    </div>
+</div>
+
+<script src="libs/jquery-2.0.3.min.js"></script>
+<script src="libs/bootstrap.min.js"></script>
+<script src="config.min.js"></script>
+<script src="pudu.stickers.js"></script>
+<script src="utils.min.js"></script>
+<script src="options.min.js"></script>
+
+</body>
+</html>
