@@ -82,19 +82,19 @@
     return pudu.getExtensionUrl("imgs/stickers/" + id + "/tab_on.png");
   };
 
-  pudu.addSticker = function(id) {
+  pudu.addSticker = function(emoId) {
     var l;
     l = function(emoId) {
       if ($("#" + emoId + "-emo-tabs").size() > 0) {
         return pudu.getLocalStorage(function(items) {
-          var selectedStickers, stickerContentHtml, stickerTabsHtml;
+          var id, selectedStickers, stickerContentHtml, stickerTabsHtml;
           selectedStickers = items.selectedStickers;
           stickerTabsHtml = ((function() {
             var _i, _len, _results;
             _results = [];
             for (_i = 0, _len = selectedStickers.length; _i < _len; _i++) {
               id = selectedStickers[_i];
-              _results.push("<li><a href='#" + id + "'><img src='" + (pudu.stickerButton(id)) + "' width='48' height='40' /></a></li>");
+              _results.push("<li><a href='#" + emoId + "-" + id + "'><img src='" + (pudu.stickerButton(id)) + "' width='48' height='40' /></a></li>");
             }
             return _results;
           })()).join('');
@@ -103,7 +103,7 @@
             html = [];
             for (_i = 0, _len = selectedStickers.length; _i < _len; _i++) {
               id = selectedStickers[_i];
-              html.push("<div id='" + id + "' class='tab-pane'><ul class='emo sticker thumbnails'>");
+              html.push("<div id='" + emoId + "-" + id + "' class='tab-pane'><ul class='emo sticker thumbnails'>");
               _ref = pudu.stickers[id];
               for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
                 img = _ref[_j];
@@ -120,10 +120,10 @@
             e.preventDefault();
             $(this).tab('show');
             return pudu.setLocalStorage({
-              lastUsedEmoSet: $(this).attr('href')
+              lastUsedEmoSet: $(this).attr('href').replace("#" + emoId + "-", '')
             });
           });
-          return $("#" + emoId + "-emo-tabs a[href='" + items.lastUsedEmoSet + "']").tab('show');
+          return $("#" + emoId + "-emo-tabs a[href='#" + emoId + "-" + items.lastUsedEmoSet + "']").tab('show');
         });
       } else {
         return setTimeout((function() {
@@ -131,7 +131,7 @@
         }), 99);
       }
     };
-    return l(id);
+    return l(emoId);
   };
 
   pudu.emoHtml = function(id) {

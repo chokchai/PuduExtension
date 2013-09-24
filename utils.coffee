@@ -69,7 +69,7 @@ pudu.stickerImg = (id, name)->
 pudu.stickerButton = (id)->
   pudu.getExtensionUrl "imgs/stickers/#{id}/tab_on.png"
 
-pudu.addSticker = (id)->
+pudu.addSticker = (emoId)->
 
   # loop until found id
   l = (emoId)->
@@ -80,11 +80,11 @@ pudu.addSticker = (id)->
         selectedStickers = items.selectedStickers
 
         # line sticker html
-        stickerTabsHtml = ("<li><a href='##{id}'><img src='#{pudu.stickerButton(id)}' width='48' height='40' /></a></li>" for id in selectedStickers).join('')
+        stickerTabsHtml = ("<li><a href='##{emoId}-#{id}'><img src='#{pudu.stickerButton(id)}' width='48' height='40' /></a></li>" for id in selectedStickers).join('')
         stickerContentHtml = (()->
           html = []
           for id in selectedStickers
-            html.push "<div id='#{id}' class='tab-pane'><ul class='emo sticker thumbnails'>"
+            html.push "<div id='#{emoId}-#{id}' class='tab-pane'><ul class='emo sticker thumbnails'>"
             for img in pudu.stickers[id]
               keyImg = pudu.stickerKey id, img
               html.push "<li class='thumbnail' data-text='[img]#{pudu.stickerImg(id, img)}[/img]' style='background-image: url(#{keyImg})' width='62' height='57'/></li>"
@@ -99,16 +99,16 @@ pudu.addSticker = (id)->
           e.preventDefault()
           $(@).tab 'show'
           # save last used
-          pudu.setLocalStorage lastUsedEmoSet: $(@).attr 'href'
+          pudu.setLocalStorage lastUsedEmoSet: $(@).attr('href').replace("##{emoId}-", '')
 
         # selected last used emo set
-        $("##{emoId}-emo-tabs a[href='#{items.lastUsedEmoSet}']").tab 'show'
+        $("##{emoId}-emo-tabs a[href='##{emoId}-#{items.lastUsedEmoSet}']").tab 'show'
 
     else
       setTimeout (->l(emoId)), 99
 
   # start loop
-  l(id)
+  l(emoId)
 
 pudu.emoHtml = (id) ->
 
