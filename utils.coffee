@@ -221,8 +221,7 @@ pudu.commentHtml = (action, hidden, textarea, id = "pudu-quick-comment-#{pudu.ra
 
 pudu.pmHtml = (returnto, receiverUser, receiverId, id = "pudu-qucik-pm-#{pudu.random()}")->
   emoHtml = pudu.emoHtml id
-  '<div>
-  <table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
+  '<table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
     <tbody>
     <tr>
       <td align="center" style="border:0;">
@@ -261,8 +260,7 @@ pudu.pmHtml = (returnto, receiverUser, receiverId, id = "pudu-qucik-pm-#{pudu.ra
       </td>
     </tr>
     </tbody>
-  </table>
-  </div>'
+  </table>'
 
 pudu.replyHtml = (receiverUser, receiverId, originalMessageId, message, id="pudu-quick-reply-#{pudu.random()}")->
   emoHtml = pudu.emoHtml id

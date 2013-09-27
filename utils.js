@@ -986,8 +986,7 @@
       id = "pudu-qucik-pm-" + (pudu.random());
     }
     emoHtml = pudu.emoHtml(id);
-    return '<div>\
-  <table id="' + id + '" width="750" border="0" cellspacing="0" cellpadding="10">\
+    return '<table id="' + id + '" width="750" border="0" cellspacing="0" cellpadding="10">\
     <tbody>\
     <tr>\
       <td align="center" style="border:0;">\
@@ -1026,8 +1025,7 @@
       </td>\
     </tr>\
     </tbody>\
-  </table>\
-  </div>';
+  </table>';
   };
 
   pudu.replyHtml = function(receiverUser, receiverId, originalMessageId, message, id) {
