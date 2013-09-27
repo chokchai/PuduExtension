@@ -551,3 +551,4 @@ a.disable{text-decoration:none !important;cursor:default !important}a.disable:ho
 .emo.sticker li{margin:5px 5px 0 0;padding:0;background-color:#fff;cursor:pointer;height:57px;width:62px}
 .emo ul{margin-left:0 !important}.emo ul li{height:24px !important;width:24px !important;display:block !important;margin-left:0 !important;margin-right:5px !important;margin-top:5px !important;margin-bottom:0 !important;overflow:hidden !important;background-color:#fff}
 .emo ul li>div{cursor:pointer;vertical-align:middle}.emo ul li>div>img{max-height:24px;max-width:24px;vertical-align:middle}
+.btn-group .btn{background-color:#fff;background-image:none;border-color:#ddd}

@@ -3525,3 +3525,8 @@ a.disable:hover {
   max-width: 24px;
   vertical-align: middle;
 }
+.btn-group .btn {
+  background-color: white;
+  background-image: none;
+  border-color: #dddddd;
+}

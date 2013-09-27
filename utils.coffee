@@ -141,8 +141,8 @@ pudu.emoHtml = (id) ->
   # add line sticker
   pudu.addSticker(id);
 
-  '<div class="pudu pudu-emo" data-id="'+id+'">
-    <div class="btn-toolbar emo" style="margin-bottom:2px; margin-top: 5px;">
+  ['<div class="pudu pudu-emo" data-id="'+id+'">
+    <div class="btn-toolbar emo" style="margin-bottom:5px; margin-top: 5px;">
       <div class="btn-group">
         <a class="btn" href="javascript:void(0)" data-prefix="[b]" data-suffix="[/b]"><i class="icon-bold"></i></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[i]" data-suffix="[/i]"><i class="icon-italic"></i></a>
@@ -157,15 +157,17 @@ pudu.emoHtml = (id) ->
         <a class="btn" href="javascript:void(0)" data-prefix="[size=5]" data-suffix="[/size]"><i class="icon-font"></i><span style="font-size:14px; line-height:14px;">5</span></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[size=6]" data-suffix="[/size]"><i class="icon-font"></i><span style="font-size:14px; line-height:14px;">6</span></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[size=7]" data-suffix="[/size]"><i class="icon-font"></i><span style="font-size:14px; line-height:14px;">7</span></a>
-        <a class="btn" href="javascript:void(0)" data-prefix="[color=black]" data-suffix="[/color]"><i class="icon-circle" style="color:black"></i></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[color=red]" data-suffix="[/color]"><i class="icon-circle" style="color:red"></i></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[color=orange]" data-suffix="[/color]"><i class="icon-circle" style="color:orange"></i></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[color=yellow]" data-suffix="[/color]"><i class="icon-circle" style="color:yellow"></i></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[color=green]" data-suffix="[/color]"><i class="icon-circle" style="color:green"></i></a>
         <a class="btn" href="javascript:void(0)" data-prefix="[color=blue]" data-suffix="[/color]"><i class="icon-circle" style="color:blue"></i></a>
-        <a class="btn" href="javascript:void(0)" data-prefix="[color=violet]" data-suffix="[/color]"><i class="icon-circle" style="color:violet"></i></a>
+        <a class="btn" href="javascript:void(0)" data-prefix="[color=magenta]" data-suffix="[/color]"><i class="icon-circle" style="color:magenta"></i></a>
+        <a class="btn" href="javascript:void(0)" data-prefix="[color=grey]" data-suffix="[/color]"><i class="icon-circle" style="color:grey"></i></a>
       </div>
     </div>
+  </div>',
+  '<div class="pudu pudu-emo" data-id="'+id+'">
     <div id="'+id+'-emo-tabs" class="tabbable pudu-emo-tabs">
       <ul class="nav nav-tabs">
         <li class="active"><a href="#pudu-emo-smiley"><img src="'+pudu.getExtensionUrl('/imgs/smiley.png')+'" width="48" /></a></li>
@@ -174,130 +176,142 @@ pudu.emoHtml = (id) ->
         <div id="pudu-emo-smiley" class="emo tab-pane active"><ul class="thumbnails">'+emoHtml.join('')+'</ul></div>
       </div>
     </div>
-    <div style="position: absolute; right: 0; top:55px;">
+    <div style="position: absolute; right: 0; top:30px;">
       <small><a style="text-decoration: none; opacity: 0.5;" target="_blank" href="'+pudu.getExtensionUrl('/options.html')+'">settings</a></small>
     </div>
-  </div>'
+  </div>']
 
 pudu.commentHtml = (action, hidden, textarea, id = "pudu-quick-comment-#{pudu.random()}", cancel=false)->
-          '<div>
-        <table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
-          <tbody id="pudu-quick-comment">
+  emoHtml = pudu.emoHtml id
+  '<div>
+  <table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
+    <tbody id="pudu-quick-comment">
+    <tr>
+      <td align="center" style="border:0;">
+        <form method="post" action="' + action + '">
+        <input type="hidden" name="' + hidden + '" value="">
+        <table class="main" border="0" cellspacing="0" cellpadding="5">
+          <tbody>
           <tr>
-            <td align="center" style="border:0;">
-              <form method="post" action="' + action + '">
-              <input type="hidden" name="' + hidden + '" value="">
-              <table class="main" border="0" cellspacing="0" cellpadding="5">
-                <tbody>
-                <tr>
-                  <td align="left" style="padding: 0px; border-bottom: 0;">
-                    <div style="padding:15px 15px 0 15px;">
-                    <b class="pudu-quick-comment-title">Comment</b>
-                    <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="' + textarea + '" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>' + pudu.emoHtml(id) + '
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td align="center" style="border-top:0;">
-                    <div style="padding-bottom: 15px;">
-                    <input type="submit" class="btn" value="Submit">
-                    '+(if cancel then '<input type="button" class="btn pudu-btn-remove-quick-box" value="Cancel">' else '')+'
-                    </div>
-                  </td>
-                </tr>
-                </tbody>
-                </table>
-              </form>
+            <td align="left" style="padding: 0px; border-bottom: 0;">
+              <div style="padding:15px 15px 0 15px;">
+              <b class="pudu-quick-comment-title">Comment</b>
+              '+emoHtml[0]+'
+              <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="' + textarea + '" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>
+              '+emoHtml[1]+'
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="border-top:0;">
+              <div style="padding-bottom: 15px;">
+              <input type="submit" class="btn" value="Submit">
+              '+(if cancel then '<input type="button" class="btn pudu-btn-remove-quick-box" value="Cancel">' else '')+'
+              </div>
             </td>
           </tr>
           </tbody>
           </table>
-          </div>'
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>'
 
 pudu.pmHtml = (returnto, receiverUser, receiverId, id = "pudu-qucik-pm-#{pudu.random()}")->
-  '<table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
-        <tbody>
-        <tr>
-          <td align="center" style="border:0;">
-            <form method="post" action="takemessage.php">
-            <input type="hidden" name="returnto" value="'+returnto+'">
-            <input type="hidden" name="receiver" value="'+receiverId+'">
-            <table class="main" border="0" cellspacing="0" cellpadding="5">
-              <tbody>
-              <tr>
-                <td align="left" style="padding: 0px; border-bottom: 0;">
-                  <div style="padding:15px 15px 0 15px;">
-                  <b class="pudu-quick-comment-title">PM to '+receiverUser+'</b>
-                  <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="msg" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>' + pudu.emoHtml(id) + '
-                  </div>
-                </td>
-              </tr>
-              <tr>
-  		          <td align="center" style="border-top:0; border-bottom: 0;"><input type="checkbox" name="save" value="yes" checked="">Save message to Sentbox</td>
-              </tr>
-              <tr>
-                <td align="center" style="border-top:0; border-bottom: 0;"><input type="text" size="30" name="money" value="ถ้าจะโอนเงินใส่จำนวนเงินที่นี่"></td>
-              </tr>
-              <tr>
-                <td align="center" style="border-top:0;">
-                  <div style="padding-bottom: 15px;">
-                  <input type="submit" class="btn" value="Submit">
-                  <input type="button" class="btn pudu-btn-remove-quick-box" value="Cancel">
-                  </div>
-                </td>
-              </tr>
-              </tbody>
-              </table>
-            </form>
-          </td>
-        </tr>
-        </tbody>
-        </table>'
+  emoHtml = pudu.emoHtml id
+  '<div>
+  <table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+    <tr>
+      <td align="center" style="border:0;">
+        <form method="post" action="takemessage.php">
+        <input type="hidden" name="returnto" value="'+returnto+'">
+        <input type="hidden" name="receiver" value="'+receiverId+'">
+        <table class="main" border="0" cellspacing="0" cellpadding="5">
+          <tbody>
+          <tr>
+            <td align="left" style="padding: 0px; border-bottom: 0;">
+              <div style="padding:15px 15px 0 15px;">
+              <b class="pudu-quick-comment-title">PM to '+receiverUser+'</b>
+              '+emoHtml[0]+'
+              <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="msg" cols="100" rows="15" style="border: 0px; width:100%;"></textarea>
+              '+emoHtml[1]+'
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" style="border-top:0; border-bottom: 0;"><input type="checkbox" name="save" value="yes" checked="">Save message to Sentbox</td>
+          </tr>
+          <tr>
+            <td align="center" style="border-top:0; border-bottom: 0;"><input type="text" size="30" name="money" value="ถ้าจะโอนเงินใส่จำนวนเงินที่นี่"></td>
+          </tr>
+          <tr>
+            <td align="center" style="border-top:0;">
+              <div style="padding-bottom: 15px;">
+              <input type="submit" class="btn" value="Submit">
+              <input type="button" class="btn pudu-btn-remove-quick-box" value="Cancel">
+              </div>
+            </td>
+          </tr>
+          </tbody>
+          </table>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>'
 
 pudu.replyHtml = (receiverUser, receiverId, originalMessageId, message, id="pudu-quick-reply-#{pudu.random()}")->
-  '<table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
-      <tbody>
-      <tr>
-        <td align="center" style="border:0;">
-          <form method="post" action="takemessage.php">
-          <input type="hidden" name="returnto" value="/inbox.php">
-          <input type="hidden" name="receiver" value="'+receiverId+'">
-          <table class="main" border="0" cellspacing="0" cellpadding="5">
-            <tbody>
-            <tr>
-              <td align="left" style="padding: 0px; border-bottom: 0;">
-                <div style="padding:15px 15px 0 15px;">
-                <b class="pudu-quick-comment-title">Reply to '+receiverUser+'</b>
-                <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="msg" cols="100" rows="15" style="border: 0px; width:100%;">'+message+'</textarea>' + pudu.emoHtml(id) + '
-                </div>
+  emoHtml = pudu.emoHtml id
+  '<div>
+  <table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
+    <tbody>
+    <tr>
+      <td align="center" style="border:0;">
+        <form method="post" action="takemessage.php">
+        <input type="hidden" name="returnto" value="/inbox.php">
+        <input type="hidden" name="receiver" value="'+receiverId+'">
+        <table class="main" border="0" cellspacing="0" cellpadding="5">
+          <tbody>
+          <tr>
+            <td align="left" style="padding: 0px; border-bottom: 0;">
+              <div style="padding:15px 15px 0 15px;">
+              <b class="pudu-quick-comment-title">Reply to '+receiverUser+'</b>
+              '+emoHtml[0]+'
+              <textarea id="'+id+'-textarea" class="pudu-quick-comment-textarea" name="msg" cols="100" rows="15" style="border: 0px; width:100%;">'+message+'</textarea>
+              '+emoHtml[1]+'
+              </div>
+            </td>
+          </tr>
+          <tr>
+              <td align="center" style="border-top:0; border-bottom: 0;">
+                <input type="checkbox" name="delete" value="yes" checked="">Delete message you are replying to
+                <input type="hidden" name="origmsg" value="'+originalMessageId+'">
+                <input type="checkbox" name="save" value="yes" checked="">Save message to Sentbox
               </td>
-            </tr>
-            <tr>
-                <td align="center" style="border-top:0; border-bottom: 0;">
-                  <input type="checkbox" name="delete" value="yes" checked="">Delete message you are replying to
-                  <input type="hidden" name="origmsg" value="'+originalMessageId+'">
-                  <input type="checkbox" name="save" value="yes" checked="">Save message to Sentbox
-                </td>
-            </tr>
-            <tr>
-              <td align="center" style="border-top:0; border-bottom: 0;"><input type="text" size="30" name="money" value="ถ้าจะโอนเงินใส่จำนวนเงินที่นี่"></td>
-            </tr>
-            <tr>
-              <td align="center" style="border-top:0;">
-                <div style="padding-bottom: 15px;">
-                <input type="submit" class="btn" value="Submit">
-                <input type="button" class="btn pudu-btn-remove-quick-box" value="Cancel">
-                </div>
-              </td>
-            </tr>
-            </tbody>
-            </table>
-          </form>
-        </td>
-      </tr>
-      </tbody>
-      </table>'
-
+          </tr>
+          <tr>
+            <td align="center" style="border-top:0; border-bottom: 0;"><input type="text" size="30" name="money" value="ถ้าจะโอนเงินใส่จำนวนเงินที่นี่"></td>
+          </tr>
+          <tr>
+            <td align="center" style="border-top:0;">
+              <div style="padding-bottom: 15px;">
+              <input type="submit" class="btn" value="Submit">
+              <input type="button" class="btn pudu-btn-remove-quick-box" value="Cancel">
+              </div>
+            </td>
+          </tr>
+          </tbody>
+          </table>
+        </form>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  </div>'
 
 pudu.parseBBCodeImage = (text)->
   while text.indexOf('[img]') isnt -1 or text.indexOf('[IMG]') isnt -1
