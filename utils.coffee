@@ -264,8 +264,7 @@ pudu.pmHtml = (returnto, receiverUser, receiverId, id = "pudu-qucik-pm-#{pudu.ra
 
 pudu.replyHtml = (receiverUser, receiverId, originalMessageId, message, id="pudu-quick-reply-#{pudu.random()}")->
   emoHtml = pudu.emoHtml id
-  '<div>
-  <table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
+  '<table id="'+id+'" width="750" border="0" cellspacing="0" cellpadding="10">
     <tbody>
     <tr>
       <td align="center" style="border:0;">
@@ -308,8 +307,7 @@ pudu.replyHtml = (receiverUser, receiverId, originalMessageId, message, id="pudu
       </td>
     </tr>
     </tbody>
-  </table>
-  </div>'
+  </table>'
 
 pudu.parseBBCodeImage = (text)->
   while text.indexOf('[img]') isnt -1 or text.indexOf('[IMG]') isnt -1
