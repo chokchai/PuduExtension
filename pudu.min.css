@@ -533,6 +533,7 @@ td.embedded>img[alt="pet"],img[alt="pet"]{max-height:38px;max-width:38px}
 .pudu-page-viewtopic .pudu-comments-table-inner{background:none !important}
 .pudu-page-viewtopic .pudu-comments-table-inner>tbody>tr>td{padding:0;border:none}
 .pudu-page-viewtopic .pudu-comments-header a:not(.pudu-comments-user){font-size:90%}
+.pudu-page-viewtopic .pudu-comments-like-link{text-decoration:none}
 .pudu-page-details .pudu-comments-table-inner>tbody>tr>td{border:none}
 .pudu-page-history .pudu-comments-table-inner>tbody>tr>td{border:none}
 .pudu-comments-user{font-size:110%}
@@ -544,6 +545,7 @@ a.disable{text-decoration:none !important;cursor:default !important}a.disable:ho
 .quick-box{margin-bottom:10px}.quick-box>table{margin:0 auto}
 .pudu-message-box{-webkit-border-radius:5px;-moz-border-radius:5px;border-radius:5px}.pudu-message-box>table>tbody>tr>td{border:0}
 .pudu-message-menu{margin-bottom:0}
+#pudu-comment-button{position:fixed;bottom:0;right:60px;width:51px;height:23px;background-color:#222;color:#fff;text-align:center;padding-top:8px;cursor:pointer}
 .pudu-emo{position:relative}.pudu-emo .nav-tabs{margin-bottom:5px}.pudu-emo .nav-tabs a{margin:0 !important;padding:0 !important}
 .pudu-emo .nav-tabs li{margin-top:5px}
 .pudu-emo .tab-pane{max-height:270px;overflow:auto}

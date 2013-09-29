@@ -238,7 +238,12 @@ if page.inbox
 ################
 # to top button
 ################
-$().UItoTop(scrollSpeed: 'normal', easingType: 'swing');
+$().UItoTop(
+  inDelay:100,
+  Outdelay:100,
+  scrollSpeed: 300,
+  easing: 'swing'
+);
 
 ################
 # remove quick form btton
@@ -370,6 +375,9 @@ if page.viewtopic
     # remove b-tag on all link except username
     $html = $(html).find('a:not(.pudu-comments-user, .pudu-comments-like-link)').each(()-> $(@).text $(@).text()).end()
 
+    # change comments like image to icon
+    $('.pudu-comments-like-link').html '<i class="icon icon-thumbs-up-alt"></i>'
+
     $header.html($html)
 
   ###############
@@ -442,6 +450,28 @@ if page.viewtopic
 
     # scroll to comment then focus
     $("##{id}").find('.pudu-quick-comment-textarea').focus()
+
+  ##############
+  # to comment button
+  ##############
+  $('body').append \
+    '<div id="pudu-comment-button" class="hide">
+        <span class="icon icon-comment"></span>
+    </div>'
+
+  $cBtn = $ '#pudu-comment-button'
+
+  $cBtn.hide().removeClass('hide');
+
+  $cBtn.on 'click', ->
+    $('html, body').animate scrollTop:$('#pudu-quick-comment').offset().top, 300
+
+  $(window).on 'scroll', ->
+    sd = $(window).scrollTop();
+    if ( sd > 200 )
+      $cBtn.fadeIn 100
+    else
+      $cBtn.fadeOut 100
 
 if page.details
 

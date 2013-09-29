@@ -3405,6 +3405,9 @@ img[alt="pet"] {
 .pudu-page-viewtopic .pudu-comments-header a:not(.pudu-comments-user) {
   font-size: 90%;
 }
+.pudu-page-viewtopic .pudu-comments-like-link {
+  text-decoration: none;
+}
 .pudu-page-details .pudu-comments-table-inner > tbody > tr > td {
   border: none;
 }
@@ -3473,6 +3476,18 @@ a.disable:hover {
 }
 .pudu-message-menu {
   margin-bottom: 0;
+}
+#pudu-comment-button {
+  position: fixed;
+  bottom: 0;
+  right: 60px;
+  width: 51px;
+  height: 23px;
+  background-color: #222;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 8px;
+  cursor: pointer;
 }
 .pudu-emo {
   position: relative;
