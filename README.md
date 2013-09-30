@@ -26,13 +26,15 @@ Features
 - Sentbox will highlight on new message
 - New topic now have emoticon
 - Added SS cleaner
-- Added Line emotion
+- Added Line emotion (options page)
+- Added goto comment button
 
 Todo
 ----
 
 - Redesign Spoiler tag
 - Preview post ?
+- Multiple Receiver PM ?
 
 Development Note
 ----------------
