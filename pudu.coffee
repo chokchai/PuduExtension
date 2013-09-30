@@ -513,19 +513,19 @@ if page.browse
     # add url to link as data
     link = $(@).find('a:first')
     if link.size() > 0
-      $td = $(@).siblings('.pudu-browse-table-row-snatched').html "<a class='pudu-direct-download' data-url='#{link.attr('href')}' href='javascript:void(0);'>torrent</a>"
+      $td = $(@).siblings('.pudu-browse-table-row-peers').html "<a class='pudu-direct-download' data-url='#{link.attr('href')}' href='javascript:void(0);'>torrent</a>"
     else
-      $td = $(@).siblings('.pudu-browse-table-row-snatched').html 'Download'
+      $td = $(@).siblings('.pudu-browse-table-row-peers').html 'Download'
 
     $(@).after $td
 
   ################
   # change peer to sum of seeder and leecher
   ################
-  $browseTablePeers.filter(':gt(0)').each ()->
-    seeder = parseInt $(@).siblings('.pudu-browse-table-row-seeders').text()
-    leecher = parseInt $(@).siblings('.pudu-browse-table-row-leechers').text()
-    $(@).text seeder + leecher
+#  $browseTablePeers.filter(':gt(0)').each ()->
+#    seeder = parseInt $(@).siblings('.pudu-browse-table-row-seeders').text()
+#    leecher = parseInt $(@).siblings('.pudu-browse-table-row-leechers').text()
+#    $(@).text seeder + leecher
 
   ###############
   # onclick download torrent link

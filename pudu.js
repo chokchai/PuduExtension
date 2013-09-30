@@ -420,17 +420,11 @@
       var $td, link;
       link = $(this).find('a:first');
       if (link.size() > 0) {
-        $td = $(this).siblings('.pudu-browse-table-row-snatched').html("<a class='pudu-direct-download' data-url='" + (link.attr('href')) + "' href='javascript:void(0);'>torrent</a>");
+        $td = $(this).siblings('.pudu-browse-table-row-peers').html("<a class='pudu-direct-download' data-url='" + (link.attr('href')) + "' href='javascript:void(0);'>torrent</a>");
       } else {
-        $td = $(this).siblings('.pudu-browse-table-row-snatched').html('Download');
+        $td = $(this).siblings('.pudu-browse-table-row-peers').html('Download');
       }
       return $(this).after($td);
-    });
-    $browseTablePeers.filter(':gt(0)').each(function() {
-      var leecher, seeder;
-      seeder = parseInt($(this).siblings('.pudu-browse-table-row-seeders').text());
-      leecher = parseInt($(this).siblings('.pudu-browse-table-row-leechers').text());
-      return $(this).text(seeder + leecher);
     });
     $('.pudu-direct-download').on('click', function() {
       var _this = this;
