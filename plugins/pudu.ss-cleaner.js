@@ -25,7 +25,7 @@
     return '<div id="pudu-menubar" style="padding: 5px; font-size: 12px; font-family: \'Segoe UI\', Tahoma, sans-serif;">\
     Clean by Pudu Extension (\
     <a style="color:blue;" href="javascript:void(0)" id="pudu-view-original" >view original</a> :\
-    <a style="color:blue;" href="http://lolthai.com/forums.php?action=viewtopic&topicid=116432">report bug</a>\
+    <a style="color:blue;" href="http://madoomee.com/forums.php?action=viewtopic&topicid=116432">report bug</a>\
     )\
   </div>';
   };

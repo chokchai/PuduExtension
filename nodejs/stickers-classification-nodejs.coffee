@@ -5,11 +5,13 @@
 # 2.stickers-img
 # 3.stickers-key
 
-STICKERS_DIR = './stickers/'
+STICKERS_DIR = 'C:/Users/Chokchai/Desktop/stickers/'
 
 TAB_DIR = STICKERS_DIR + 'stickers-tab/'
 IMG_DIR = STICKERS_DIR + 'stickers-img/'
 KEY_DIR = STICKERS_DIR + 'stickers-key/'
+
+fs = require 'fs'
 
 filterTab = (filename)->
   filename.indexOf('tab_on') > -1
@@ -33,9 +35,6 @@ rmrfSync = (path)->
         fs.unlinkSync curPath
     fs.rmdirSync path + "/"
 
-# load libs
-fs = require 'fs'
-
 # init dir
 console.log 'INIT_DIR'
 
@@ -48,7 +47,8 @@ fs.mkdirSync IMG_DIR
 fs.mkdirSync KEY_DIR
 
 # each sticker folder to get list of image
-for sdir in fs.readdirSync STICKERS_DIR
+stickersDir = fs.readdirSync STICKERS_DIR
+for sdir, i in stickersDir
 
   # create dir
   fs.mkdirSync TAB_DIR + sdir
@@ -63,6 +63,6 @@ for sdir in fs.readdirSync STICKERS_DIR
     fs.writeFileSync KEY_DIR + sdir + '/' + fn, file if filterKey(fn)
     fs.writeFileSync IMG_DIR + sdir + '/' + fn, file if filterImg(fn)
 
-    console.log 'SAVED ' + STICKERS_DIR + sdir + '/' + fn
+    console.log 'SAVED ['+(i+1)+'/'+(stickersDir.length)+']' + STICKERS_DIR + sdir + '/' + fn
 
 console.log 'DONE!'

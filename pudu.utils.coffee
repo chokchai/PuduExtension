@@ -176,9 +176,6 @@ pudu.emoHtml = (id) ->
         <div id="pudu-emo-smiley" class="emo tab-pane active"><ul class="thumbnails">'+emoHtml.join('')+'</ul></div>
       </div>
     </div>
-    <div style="position: absolute; right: 0; top:30px;">
-      <small><a style="text-decoration: none; opacity: 0.5;" target="_blank" href="'+pudu.getExtensionUrl('/options.html')+'">settings</a></small>
-    </div>
   </div>']
 
 pudu.commentHtml = (action, hidden, textarea, id = "pudu-quick-comment-#{pudu.random()}", cancel=false)->

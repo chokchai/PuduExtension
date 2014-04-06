@@ -224,6 +224,9 @@ if page.browse
 
 if page.forums
   # change table display
+  $('.pudu-forums-table-row > td, .pudu-forums-table-header > td')
+  .css 'borderColor', $('.pudu-forums-table-header > td:first').css 'backgroundColor'
+  # for make sure...
   jQuery ($)->
     $('.pudu-forums-table-row > td, .pudu-forums-table-header > td')
     .css 'borderColor', $('.pudu-forums-table-header > td:first').css 'backgroundColor'
@@ -284,15 +287,15 @@ $('#pudu-menu-more-button').on 'click', ()-> $menuMore.toggleClass('hide')
 
 $menuMore.append \
   '<td align="center" class="navigation"><a href="userdetails.php?id='+pudu.getCookie('xid')+'">User</a></td>',
-  $menu.find('a[href="http://lolthai.com/oforums.php"]').parent(),
+  $menu.find('a[href="oforums.php"]').parent(),
   '<td align="center" colspan="2" class="navigation"><a href="userhistory.php?action=viewnewposts&id='+pudu.getCookie('xid')+'">Forums History</a></td>',
   '<td align="center" class="navigation"><a href="userhistory.php?action=viewmarkets&id='+pudu.getCookie('xid')+'">Markets History</a></td>',
-  $menu.find('a[href="http://lolthai.com/pets.php"]').parent(),
+  $menu.find('a[href="pets.php"]').parent(),
   '<td align="center" class="navigation"><a href="bookmark.php">Bookmark</a></td>',
-  $menu.find('a[href="http://lolthai.com/arena.php"]').parent(),
+  $menu.find('a[href="arena.php"]').parent(),
   '<td align="center" class="navigation" colspan="2"><a href="users.php">Search Users</a></td>',
-  $menu.find('a[href="http://lolthai.com/casino.php"]').parent(),
-  $menu.find('a[href="http://lolthai.com/chat.php"]').parent()
+  $menu.find('a[href="casino.php"]').parent(),
+  $menu.find('a[href="chat.php"]').parent()
 
 if page.forums
 

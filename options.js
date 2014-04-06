@@ -62,7 +62,9 @@
 
   for (id in stickers) {
     imgs = stickers[id];
-    $stickers.append("<li>      <div id='" + id + "' class='thumbnail sticker-box'>        <img class='sticker-image' data-id='" + id + "' src='" + (pudu.stickerButton(id)) + "' title='Click to preview' />        <center><small>" + (i++) + "</small></center>        <div class='sticker-checkbox-wrap'>          <input class='sticker-checkbox' type='checkbox' data-id='" + id + "' name='select' />        </div>      </div>    </li>");
+    if (id !== 'sticker5') {
+      $stickers.append("<li>        <div id='" + id + "' data-name='" + pudu.stickersName[id] + "' class='thumbnail sticker-box'>          <img class='sticker-image' data-id='" + id + "' src='" + (pudu.stickerButton(id)) + "' title='Click to preview' />          <center><small>" + pudu.stickersName[id] + "</small></center>          <div class='sticker-checkbox-wrap'>            <input class='sticker-checkbox' type='checkbox' data-id='" + id + "' name='select' />          </div>        </div>      </li>");
+    }
   }
 
   pudu.getLocalStorage(function(items) {
@@ -75,6 +77,18 @@
     return setSelectedStickerEffect();
   });
 
+  $('#pudu-stickers-filter').on('keyup', function() {
+    var q;
+    q = $(this).val().trim().toLowerCase();
+    return $('.sticker-box:not(.checked)').each(function() {
+      if ($(this).data('name').toLowerCase().indexOf(q) === -1) {
+        return $(this).parent().hide();
+      } else {
+        return $(this).parent().show();
+      }
+    });
+  });
+
   $('body').on('click', '.sticker-checkbox', function() {
     return saveSelectedStickers();
   });
@@ -84,7 +98,7 @@
     id = $(this).data('id');
     imgs = stickers[id];
     $stickerModal.find('.btn-success').data('id', id);
-    $stickerModal.find('h3').html("<img src='" + (pudu.stickerButton(id)) + "' /> " + id);
+    $stickerModal.find('h3').html("<img src='" + (pudu.stickerButton(id)) + "' /> " + pudu.stickersName[id]);
     $stickerModal.find('.thumbnails').empty().html(((function() {
       var _i, _len, _results;
       _results = [];

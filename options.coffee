@@ -39,16 +39,19 @@ saveSelectedStickers = ()->
 # add stickers
 i = 1
 for id, imgs of stickers
-  $stickers.append \
-    "<li>
-      <div id='#{id}' class='thumbnail sticker-box'>
-        <img class='sticker-image' data-id='#{id}' src='#{pudu.stickerButton(id)}' title='Click to preview' />
-        <center><small>#{i++}</small></center>
-        <div class='sticker-checkbox-wrap'>
-          <input class='sticker-checkbox' type='checkbox' data-id='#{id}' name='select' />
+
+  # skip sticker5 cause not have an preview
+  if id != 'sticker5'
+    $stickers.append \
+      "<li>
+        <div id='#{id}' data-name='#{pudu.stickersName[id]}' class='thumbnail sticker-box'>
+          <img class='sticker-image' data-id='#{id}' src='#{pudu.stickerButton(id)}' title='Click to preview' />
+          <center><small>#{pudu.stickersName[id]}</small></center>
+          <div class='sticker-checkbox-wrap'>
+            <input class='sticker-checkbox' type='checkbox' data-id='#{id}' name='select' />
+          </div>
         </div>
-      </div>
-    </li>"
+      </li>"
 
 # add current selected
 pudu.getLocalStorage (items)->
@@ -56,6 +59,15 @@ pudu.getLocalStorage (items)->
     $("##{id} .sticker-checkbox").attr 'checked', true
   # added effect
   setSelectedStickerEffect()
+
+# filter
+$('#pudu-stickers-filter').on 'keyup', ()->
+  q = $(@).val().trim().toLowerCase()
+  $('.sticker-box:not(.checked)').each ->
+    if $(@).data('name').toLowerCase().indexOf(q) == -1
+      $(@).parent().hide()
+    else
+      $(@).parent().show()
 
 # event to select
 $('body').on 'click', '.sticker-checkbox', ()->
@@ -68,7 +80,7 @@ $('body').on 'click', '.sticker-image', ()->
   imgs = stickers[id]
   # setup modal
   $stickerModal.find('.btn-success').data 'id', id
-  $stickerModal.find('h3').html "<img src='#{pudu.stickerButton(id)}' /> #{id}"
+  $stickerModal.find('h3').html "<img src='#{pudu.stickerButton(id)}' /> #{pudu.stickersName[id]}"
   $stickerModal.find('.thumbnails').empty().html \
     ("<li><img class='thumbnail' src='#{pudu.stickerKey(id, img)}' width='75' /></li>" for img in imgs).join('')
   # show modal

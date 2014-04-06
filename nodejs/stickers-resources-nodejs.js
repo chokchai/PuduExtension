@@ -37,7 +37,7 @@
 
   resourceToJson(RESOURCE_DIR);
 
-  fs.writeFileSync('./resource.json', JSON.stringify(resources));
+  fs.writeFileSync(RESOURCE_DIR.replace('stickers-tab/', '') + 'resource.json', JSON.stringify(resources));
 
   console.log('DONE!');
 
