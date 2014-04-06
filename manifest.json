@@ -3,10 +3,11 @@
 
     "name": "Pudu Extension",
     "description": "Pudu Extension is extension that will make your site look clean and clear!",
-    "version": "1.1.3.2",
+    "version": "1.1.3.5",
 
     "permissions": [
         "http://*.lolthai.com/",
+        "http://*.madoomee.com/",
         "storage"
     ],
 
@@ -14,22 +15,25 @@
 
     "content_scripts": [
         {
-            "matches": ["http://*.lolthai.com/*"],
+            "matches": ["http://*.lolthai.com/*", "http://*.madoomee.com/*"],
             "css": [
                 "libs/jquery.ui.totop.css",
                 "libs/font-awesome.min.css",
-                "pudu.min.css"
+                "pudu.css"
             ],
             "js": [
-                "libs/jquery-2.0.3.min.js",
+                "libs/jquery-2.1.0.min.js",
                 "libs/bootstrap.min.js",
                 "libs/moment+langs.min.js",
                 "libs/jquery.ui.totop.min.js",
-                "config.min.js",
+                "pudu.config.js",
                 "pudu.stickers.js",
-                "utils.min.js",
-                "pudu.min.js",
-                "libs/ga-config.min.js",
+                "pudu.utils.js",
+                "pudu.js",
+
+
+
+                "libs/ga-config.js",
                 "libs/ga.js"
             ]
         },
@@ -42,8 +46,8 @@
                 "http://*.wezatv.com/pic/*"
             ],
             "js": [
-                "libs/jquery-2.0.3.min.js",
-                "ss-cleaner.min.js"
+                "libs/jquery-2.1.0.min.js",
+                "plugins/pudu.ss-cleaner.js"
             ]
         }
     ],
@@ -64,19 +68,19 @@
     },
 
     "web_accessible_resources" : [
-        "libs/jquery-2.0.3.min.map",
+        "libs/jquery-2.1.0.min.map",
+
         "pudu.map",
         "pudu.coffee",
-        "utils.map",
-        "utils.coffee",
+        "pudu.utils.map",
+        "pudu.utils.coffee",
         "popup.map",
         "popup.coffee",
-        "ss-cleaner.coffee",
-        "ss-cleaner.map",
         "options.coffee",
         "options.map",
 
-        "stickers.json",
+        "plugins/pudu.ss-cleaner.coffee",
+        "plugins/pudu.ss-cleaner.map",
 
         "imgs/jquery.ui.totop.png",
 
