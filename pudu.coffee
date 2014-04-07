@@ -327,11 +327,13 @@ if page.viewtopic
   ###############
   # remove signature
   ###############
-  $commentsContent.each ()->
-    html = $(this).html()
-    cIndex = html.indexOf '<br>------------------------<br>'
-    if cIndex != -1 then $(this).html html.substring(0,
-      cIndex) + '<div class="hide pudu-comment-signature" >' + html.substring(cIndex) + '</div>'
+  pudu.isOptionEnable 'hideSignature', ->
+    # only hide when option it not set or it set to true
+    $commentsContent.each ()->
+      html = $(this).html()
+      cIndex = html.indexOf '<br>------------------------<br>'
+      if cIndex != -1 then $(this).html html.substring(0,
+        cIndex) + '<div class="hide pudu-comment-signature" >' + html.substring(cIndex) + '</div>'
 
   ###############
   # show signature by press ctrl+alt
@@ -363,25 +365,29 @@ if page.viewtopic
   ###############
   # edit comment header
   ###############
-  $commentsBox.each ()->
-    # reformat
-    name = $(this).attr 'name'
-    name = $(this).prev().attr 'name' if name == 'last'
-    $header = $(this).find '.pudu-comments-header'
-    html = $header.html()
-    .replace(' GMT', '')
-    .replace("##{name}", '')
-    .replace(///\[///g, '')
-    .replace(///\]///g, '')
-    .replace('--', '-')
+  pudu.getOptionBoolean 'hideCommentNumber', (enable)->
 
-    # remove b-tag on all link except username
-    $html = $(html).find('a:not(.pudu-comments-user, .pudu-comments-like-link)').each(()-> $(@).text $(@).text()).end()
+    $commentsBox.each ()->
+      # reformat
+      name = $(this).attr 'name'
+      name = $(this).prev().attr 'name' if name == 'last'
+      $header = $(this).find '.pudu-comments-header'
+      html = $header.html()
+      .replace(' GMT', '')
+      .replace(///\[///g, '')
+      .replace(///\]///g, '')
+      .replace('--', '-')
 
-    # change comments like image to icon
-    $('.pudu-comments-like-link').html '<i class="icon icon-thumbs-up-alt"></i>'
+      if enable == true
+        html = html.replace("##{name}", '')
 
-    $header.html($html)
+      # remove b-tag on all link except username
+      $html = $(html).find('a:not(.pudu-comments-user, .pudu-comments-like-link)').each(()-> $(@).text $(@).text()).end()
+
+      # change comments like image to icon
+      $('.pudu-comments-like-link').html '<i class="icon icon-thumbs-up-alt"></i>'
+
+      $header.html($html)
 
   ###############
   # quick edit, quote and pm
@@ -651,12 +657,15 @@ if page.newtopic
   # Add emotion to new topic
   ###############
   id = pudu.random()
+  emoHtml = pudu.emoHtml(id)
+
   $subject = $('input[name="subject"]').css(width:'100%')
   $textarea = $('textarea[name="body"]')
   $textarea
     .css(width:'100%')
     .attr('id', "#{id}-textarea")
-    .after pudu.emoHtml(id)
+    .before(emoHtml[0])
+    .after emoHtml[1]
 
 
 ######################################

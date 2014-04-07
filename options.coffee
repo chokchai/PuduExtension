@@ -18,6 +18,40 @@ $resetButton.on 'click', ->
       window.location.href = window.location.href
 
 ####################
+# Options
+####################
+
+checkboxOptions = (optionSelector, optionName)->
+
+  # setup option
+  pudu.getLocalStorage (items)->
+    # set default to hide
+    if items[optionName] == undefined
+      opts = {}
+      opts[optionName] = true
+      pudu.setLocalStorage opts
+
+    if items[optionName] == undefined or items[optionName] == true
+      $(optionSelector).attr 'checked', 'checked'
+
+  # bind when change options
+  $(optionSelector).on 'change', ->
+
+    checked = $(@).is(':checked')
+    opts = {}
+    if checked
+      opts[optionName] = true
+    else
+      opts[optionName] = false
+
+    pudu.setLocalStorage opts
+
+# options list
+
+checkboxOptions('#pudu-options-signature', 'hideSignature')
+checkboxOptions('#pudu-options-comment-number', 'hideCommentNumber')
+
+####################
 # Sticker
 ####################
 

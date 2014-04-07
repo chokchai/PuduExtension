@@ -43,6 +43,27 @@
     return chrome.extension.getURL(uri);
   };
 
+  pudu.isOptionEnable = function(optionName, onEnable, onDisable) {
+    if (onDisable == null) {
+      onDisable = function() {};
+    }
+    return pudu.getLocalStorage(function(items) {
+      if (items[optionName] === void 0 || items[optionName] === true) {
+        return onEnable();
+      } else {
+        return onDisable();
+      }
+    });
+  };
+
+  pudu.getOptionBoolean = function(optionName, callback) {
+    return pudu.isOptionEnable(optionName, (function() {
+      return callback(true);
+    }), (function() {
+      return callback(false);
+    }));
+  };
+
   pudu.versionCompare = function(left, right) {
     var a, b, i, len;
     if (typeof left + typeof right !== 'stringstring') {

@@ -26,6 +26,16 @@ pudu.removeLocalStorage = (key, func = ->)->
 pudu.getExtensionUrl = (uri)->
   chrome.extension.getURL uri
 
+pudu.isOptionEnable = (optionName, onEnable, onDisable = ->)->
+  pudu.getLocalStorage (items)->
+    if items[optionName] == undefined or items[optionName] == true
+      onEnable()
+    else
+      onDisable()
+
+pudu.getOptionBoolean = (optionName, callback)->
+  pudu.isOptionEnable optionName, (-> callback(true)), (-> callback(false))
+
 # Simply compares two string version values.
 #
 # Example:
